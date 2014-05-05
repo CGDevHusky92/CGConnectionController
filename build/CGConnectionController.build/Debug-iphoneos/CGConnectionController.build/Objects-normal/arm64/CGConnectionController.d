@@ -1,7 +1,5 @@
 dependencies: \
   /Users/nbvikingsidiot001/Desktop/SourceApps/CGApplicationLibrary/CGConnectionController/CGConnectionController/CGConnectionController.m \
-  /Users/nbvikingsidiot001/Desktop/SourceApps/CGApplicationLibrary/CGConnectionController/CGConnectionController/CGConnectionController.h \
-  /Users/nbvikingsidiot001/Desktop/SourceApps/CGApplicationLibrary/CGConnectionController/CGConnectionController/CGManagedObject.h \
   /Users/nbvikingsidiot001/Documents/FacebookSDK/Parse.framework/Headers/Parse.h \
   /Users/nbvikingsidiot001/Documents/FacebookSDK/Parse.framework/Headers/PFACL.h \
   /Users/nbvikingsidiot001/Documents/FacebookSDK/Parse.framework/Headers/PFAnalytics.h \
@@ -67,4 +65,6 @@ dependencies: \
   /Users/nbvikingsidiot001/Documents/FacebookSDK/FacebookSDK.framework/Headers/FBSettings.h \
   /Users/nbvikingsidiot001/Documents/FacebookSDK/FacebookSDK.framework/Headers/FBUserSettingsViewController.h \
   /Users/nbvikingsidiot001/Documents/FacebookSDK/FacebookSDK.framework/Headers/NSError+FBError.h \
-  /Users/nbvikingsidiot001/Documents/FacebookSDK/Parse.framework/Headers/PFFacebookUtils.h
+  /Users/nbvikingsidiot001/Documents/FacebookSDK/Parse.framework/Headers/PFFacebookUtils.h \
+  /Users/nbvikingsidiot001/Desktop/SourceApps/CGApplicationLibrary/CGConnectionController/CGConnectionController/CGConnectionController.h \
+  /Users/nbvikingsidiot001/Desktop/SourceApps/CGApplicationLibrary/CGConnectionController/CGConnectionController/CGManagedObject.h

@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2E262AAC18FDB02D004FFFB3 /* CGParseConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E262AAB18FDB02D004FFFB3 /* CGParseConnection.m */; };
+		2E262AAF18FDB141004FFFB3 /* CGConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E262AAE18FDB141004FFFB3 /* CGConnection.m */; };
+		2E262AB218FDB4AB004FFFB3 /* CGLocalConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E262AB118FDB4AB004FFFB3 /* CGLocalConnection.m */; };
+		2E262AB518FDB4B5004FFFB3 /* CGServerConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E262AB418FDB4B5004FFFB3 /* CGServerConnection.m */; };
 		2E6FBACC18EA0902008AA837 /* CGManagedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E6FBACB18EA0902008AA837 /* CGManagedObject.m */; };
 		2E6FBAD118EA095F008AA837 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E6FBAD018EA095F008AA837 /* Parse.framework */; };
 		2ECA4C8A18EA078200D0EB46 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2ECA4C8918EA078200D0EB46 /* Foundation.framework */; };
@@ -44,6 +48,14 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		2E262AAA18FDB02D004FFFB3 /* CGParseConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGParseConnection.h; sourceTree = "<group>"; };
+		2E262AAB18FDB02D004FFFB3 /* CGParseConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CGParseConnection.m; sourceTree = "<group>"; };
+		2E262AAD18FDB141004FFFB3 /* CGConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGConnection.h; sourceTree = "<group>"; };
+		2E262AAE18FDB141004FFFB3 /* CGConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CGConnection.m; sourceTree = "<group>"; };
+		2E262AB018FDB4AB004FFFB3 /* CGLocalConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGLocalConnection.h; sourceTree = "<group>"; };
+		2E262AB118FDB4AB004FFFB3 /* CGLocalConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CGLocalConnection.m; sourceTree = "<group>"; };
+		2E262AB318FDB4B5004FFFB3 /* CGServerConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGServerConnection.h; sourceTree = "<group>"; };
+		2E262AB418FDB4B5004FFFB3 /* CGServerConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CGServerConnection.m; sourceTree = "<group>"; };
 		2E6FBACA18EA0902008AA837 /* CGManagedObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGManagedObject.h; sourceTree = "<group>"; };
 		2E6FBACB18EA0902008AA837 /* CGManagedObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CGManagedObject.m; sourceTree = "<group>"; };
 		2E6FBAD018EA095F008AA837 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = ../../../../Documents/FacebookSDK/Parse.framework; sourceTree = "<group>"; };
@@ -84,6 +96,29 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2E262AB618FDB4C0004FFFB3 /* CGConnectionSubclasses */ = {
+			isa = PBXGroup;
+			children = (
+				2E262AB018FDB4AB004FFFB3 /* CGLocalConnection.h */,
+				2E262AB118FDB4AB004FFFB3 /* CGLocalConnection.m */,
+				2E262AB318FDB4B5004FFFB3 /* CGServerConnection.h */,
+				2E262AB418FDB4B5004FFFB3 /* CGServerConnection.m */,
+				2E262AAA18FDB02D004FFFB3 /* CGParseConnection.h */,
+				2E262AAB18FDB02D004FFFB3 /* CGParseConnection.m */,
+			);
+			name = CGConnectionSubclasses;
+			sourceTree = "<group>";
+		};
+		2E262AB718FDB4CC004FFFB3 /* CGConnection */ = {
+			isa = PBXGroup;
+			children = (
+				2E262AAD18FDB141004FFFB3 /* CGConnection.h */,
+				2E262AAE18FDB141004FFFB3 /* CGConnection.m */,
+				2E262AB618FDB4C0004FFFB3 /* CGConnectionSubclasses */,
+			);
+			name = CGConnection;
+			sourceTree = "<group>";
+		};
 		2ECA4C7D18EA078200D0EB46 = {
 			isa = PBXGroup;
 			children = (
@@ -119,6 +154,7 @@
 			children = (
 				2ECA4C8E18EA078200D0EB46 /* CGConnectionController.h */,
 				2ECA4C9018EA078200D0EB46 /* CGConnectionController.m */,
+				2E262AB718FDB4CC004FFFB3 /* CGConnection */,
 				2E6FBACA18EA0902008AA837 /* CGManagedObject.h */,
 				2E6FBACB18EA0902008AA837 /* CGManagedObject.m */,
 				2ECA4C8C18EA078200D0EB46 /* Supporting Files */,
@@ -233,8 +269,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2E262AB518FDB4B5004FFFB3 /* CGServerConnection.m in Sources */,
+				2E262AB218FDB4AB004FFFB3 /* CGLocalConnection.m in Sources */,
 				2E6FBACC18EA0902008AA837 /* CGManagedObject.m in Sources */,
+				2E262AAC18FDB02D004FFFB3 /* CGParseConnection.m in Sources */,
 				2ECA4C9118EA078200D0EB46 /* CGConnectionController.m in Sources */,
+				2E262AAF18FDB141004FFFB3 /* CGConnection.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

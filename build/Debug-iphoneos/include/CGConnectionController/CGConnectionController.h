@@ -11,9 +11,10 @@
 
 typedef enum CGConnectionType
 {
-    kCGConnectionURL,
+    kCGConnectionNone,
+    kCGConnectionServer,
     kCGConnectionLibrary,
-    kCGConnectionLocalSyncKey
+    kCGConnectionLocal
 } CGConnectionType;
 
 @interface CGConnectionController : NSObject
@@ -21,5 +22,28 @@ typedef enum CGConnectionType
 + (instancetype)sharedConnection;
 
 - (void)addSource:(NSString *)name withType:(CGConnectionType)type;
+
+// public
+//
+// add server  (name, url, ssl, ...)
+// add library (name, appId, appKey, ...)
+// add local   (name, beacon_name)
+//
+// private
+//
+// specify connection of type
+// specify connection of type and name
+//
+// retrieval methods
+//
+// ....
+
+- (CGManagedObject *)getObjectWithId:(NSString *)objId forType:(NSString *)type;
+
+//- (CGManagedObject *)retrieveObjectOnServer:(NSString *)objId;
+- (NSArray *)grabAllServerObjectsWithName:(NSString *)className; // forUserKey:(NSString *)relKey;
+- (NSArray *)grabAllServerObjectsWithName:(NSString *)className orderAscendingByKey:(NSString *)key;
+- (NSArray *)grabAllServerObjectsWithName:(NSString *)className orderDescendingByKey:(NSString *)key;
+- (NSArray *)grabAllServerObjectsWithName:(NSString *)className orderedByKey:(NSString *)key ascending:(BOOL)ascend;
 
 @end
