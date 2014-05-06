@@ -154,9 +154,9 @@
 			children = (
 				2ECA4C8E18EA078200D0EB46 /* CGConnectionController.h */,
 				2ECA4C9018EA078200D0EB46 /* CGConnectionController.m */,
-				2E262AB718FDB4CC004FFFB3 /* CGConnection */,
 				2E6FBACA18EA0902008AA837 /* CGManagedObject.h */,
 				2E6FBACB18EA0902008AA837 /* CGManagedObject.m */,
+				2E262AB718FDB4CC004FFFB3 /* CGConnection */,
 				2ECA4C8C18EA078200D0EB46 /* Supporting Files */,
 			);
 			path = CGConnectionController;

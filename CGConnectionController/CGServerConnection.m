@@ -35,4 +35,31 @@
 //    return nil;
 //}
 
+#pragma mark - JSON retrievers
+
+- (NSData *)dataFromURL:(NSURL *)url
+{
+    return nil;
+}
+
+- (NSDictionary *)dictionaryFromData:(NSData *)data
+{
+    return nil;
+}
+
+- (NSArray *)arrayFromData:(NSData *)data
+{
+    return nil;
+}
+
+- (NSDictionary *)dictionaryFromURL:(NSURL *)url
+{
+    return nil;
+}
+
+- (NSArray *)arrayFromURL:(NSURL *)url
+{
+    return nil;
+}
+
 @end

@@ -11,4 +11,6 @@
 
 @interface CGServerConnection : CGConnection
 
+@property (nonatomic, strong) NSURL *url;
+
 @end
