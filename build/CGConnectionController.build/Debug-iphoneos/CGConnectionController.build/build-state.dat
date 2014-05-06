@@ -581,7 +581,7 @@ r0
 
 CCheck dependencies
 r0
-lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection18"Check dependencies18"Check dependenciesf356b5628019b941^a7cab7628019b941^---0#1#1#--18"Check dependencies36"23C7D648-AC5B-4AE8-BF94-4BEC4CFD51BE-
+lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection18"Check dependencies18"Check dependencies728b61dd8419b941^9cdf64dd8419b941^---0#1#1#--18"Check dependencies36"52F8CAA1-CF20-44AB-AEC2-A169D1615FA2-
 
 CCompileC build/CGConnectionController.build/Debug-iphoneos/CGConnectionController.build/Objects-normal/arm64/CGConnection.o /Users/nbvikingsidiot001/Desktop/SourceApps/CGApplicationLibrary/CGConnectionController/CGConnectionController/CGConnection.m normal arm64 objective-c com.apple.compilers.llvm.clang.1_0.compiler
 s421021449.244070
