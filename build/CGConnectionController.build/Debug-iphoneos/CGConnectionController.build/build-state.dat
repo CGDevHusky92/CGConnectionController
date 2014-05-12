@@ -206,7 +206,7 @@ t1397950174
 s1357
 
 N/Users/nbvikingsidiot001/Desktop/SourceApps/CGApplicationLibrary/CGConnectionController/build/Debug-iphoneos/libCGConnectionController.a
-t1399872341
+t1399874923
 s77288
 
 N/Users/nbvikingsidiot001/Desktop/SourceApps/CGApplicationLibrary/CGDataController/CGDataController/NSManagedObject+SYNC.h
@@ -581,7 +581,7 @@ r0
 
 CCheck dependencies
 r0
-lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection18"Check dependencies18"Check dependencies677c03119520b941^cbf704119520b941^---0#1#1#--18"Check dependencies36"39D2F4BC-D061-4BF1-948F-182F5FB38BE1-
+lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection18"Check dependencies18"Check dependencies5f5e987ca320b941^37e3987ca320b941^---0#1#1#--18"Check dependencies36"DAD2F4DA-5165-4537-BB8E-8ABFEBB35C30-
 
 CCompileC build/CGConnectionController.build/Debug-iphoneos/CGConnectionController.build/Objects-normal/arm64/CGConnection.o /Users/nbvikingsidiot001/Desktop/SourceApps/CGApplicationLibrary/CGConnectionController/CGConnectionController/CGConnection.m normal arm64 objective-c com.apple.compilers.llvm.clang.1_0.compiler
 s421435069.068243
@@ -2167,28 +2167,28 @@ lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection150"Libtoo
 b52C4CE53-0A50-42AA-9314-1B920EE2ADF6
 
 CLibtool /Users/nbvikingsidiot001/Desktop/SourceApps/CGApplicationLibrary/CGConnectionController/build/Debug-iphoneos/libCGConnectionController.a normal arm64
-s421565141.868861
-e421565141.876836
+s421567723.602227
+e421567723.611028
 r1
 xLibtool
 x/Users/nbvikingsidiot001/Desktop/SourceApps/CGApplicationLibrary/CGConnectionController/build/Debug-iphoneos/libCGConnectionController.a
 xnormal
 xarm64
 o/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/libtool: -dynamic not specified the following flags are invalid: -ObjC 
-lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection69"Libtool build/Debug-iphoneos/libCGConnectionController.a normal arm6469"Libtool build/Debug-iphoneos/libCGConnectionController.a normal arm64f986ded59220b941^878ae1d59220b941^-159"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/libtool: -dynamic not specified the following flags are invalid: -ObjC -0#0#1#--1163"Libtool build/Debug-iphoneos/libCGConnectionController.a normal arm64    cd /Users/nbvikingsidiot001/Desktop/SourceApps/CGApplicationLibrary/CGConnectionController    export IPHONEOS_DEPLOYMENT_TARGET=7.1    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/libtool -static -arch_only arm64 -syslibroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.1.sdk -L/Users/nbvikingsidiot001/Desktop/SourceApps/CGApplicationLibrary/CGConnectionController/build/Debug-iphoneos -filelist /Users/nbvikingsidiot001/Desktop/SourceApps/CGApplicationLibrary/CGConnectionController/build/CGConnectionController.build/Debug-iphoneos/CGConnectionController.build/Objects-normal/arm64/CGConnectionController.LinkFileList -ObjC -framework Parse -framework Foundation -o /Users/nbvikingsidiot001/Desktop/SourceApps/CGApplicationLibrary/CGConnectionController/build/Debug-iphoneos/libCGConnectionController.a36"92231236-F13D-4C87-9381-DC2693B5851D-
-b49A111F0-F87F-40F0-A359-9233089DCF77
+lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection69"Libtool build/Debug-iphoneos/libCGConnectionController.a normal arm6469"Libtool build/Debug-iphoneos/libCGConnectionController.a normal arm64234b9aeb9c20b941^336c9ceb9c20b941^-159"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/libtool: -dynamic not specified the following flags are invalid: -ObjC -0#0#1#--1163"Libtool build/Debug-iphoneos/libCGConnectionController.a normal arm64    cd /Users/nbvikingsidiot001/Desktop/SourceApps/CGApplicationLibrary/CGConnectionController    export IPHONEOS_DEPLOYMENT_TARGET=7.1    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/libtool -static -arch_only arm64 -syslibroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.1.sdk -L/Users/nbvikingsidiot001/Desktop/SourceApps/CGApplicationLibrary/CGConnectionController/build/Debug-iphoneos -filelist /Users/nbvikingsidiot001/Desktop/SourceApps/CGApplicationLibrary/CGConnectionController/build/CGConnectionController.build/Debug-iphoneos/CGConnectionController.build/Objects-normal/arm64/CGConnectionController.LinkFileList -ObjC -framework Parse -framework Foundation -o /Users/nbvikingsidiot001/Desktop/SourceApps/CGApplicationLibrary/CGConnectionController/build/Debug-iphoneos/libCGConnectionController.a36"DC4EE622-F2D6-4E7D-9C2D-7D8EC8FE364B-
+bCA566CDC-7F8F-4647-9BBF-D8DAA9788686
 
 CLibtool /Users/nbvikingsidiot001/Desktop/SourceApps/CGApplicationLibrary/CGConnectionController/build/Debug-iphoneos/libCGConnectionController.a normal armv7
-s421565011.063671
-e421565011.079366
+s421567689.757018
+e421567689.768618
 r1
 xLibtool
 x/Users/nbvikingsidiot001/Desktop/SourceApps/CGApplicationLibrary/CGConnectionController/build/Debug-iphoneos/libCGConnectionController.a
 xnormal
 xarmv7
 o/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/libtool: -dynamic not specified the following flags are invalid: -ObjC 
-lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection69"Libtool build/Debug-iphoneos/libCGConnectionController.a normal armv769"Libtool build/Debug-iphoneos/libCGConnectionController.a normal armv7a46d10539220b941^f4a814539220b941^-159"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/libtool: -dynamic not specified the following flags are invalid: -ObjC -0#0#1#--1163"Libtool build/Debug-iphoneos/libCGConnectionController.a normal armv7    cd /Users/nbvikingsidiot001/Desktop/SourceApps/CGApplicationLibrary/CGConnectionController    export IPHONEOS_DEPLOYMENT_TARGET=7.1    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/libtool -static -arch_only armv7 -syslibroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.1.sdk -L/Users/nbvikingsidiot001/Desktop/SourceApps/CGApplicationLibrary/CGConnectionController/build/Debug-iphoneos -filelist /Users/nbvikingsidiot001/Desktop/SourceApps/CGApplicationLibrary/CGConnectionController/build/CGConnectionController.build/Debug-iphoneos/CGConnectionController.build/Objects-normal/armv7/CGConnectionController.LinkFileList -ObjC -framework Parse -framework Foundation -o /Users/nbvikingsidiot001/Desktop/SourceApps/CGApplicationLibrary/CGConnectionController/build/Debug-iphoneos/libCGConnectionController.a36"37485351-8B5B-452E-AD1A-37337E3EA372-
-bA21F77A2-1D10-4963-962D-1F6148D44BD3
+lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection69"Libtool build/Debug-iphoneos/libCGConnectionController.a normal armv769"Libtool build/Debug-iphoneos/libCGConnectionController.a normal armv798dfc1c99c20b941^97c9c4c99c20b941^-159"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/libtool: -dynamic not specified the following flags are invalid: -ObjC -0#0#1#--1163"Libtool build/Debug-iphoneos/libCGConnectionController.a normal armv7    cd /Users/nbvikingsidiot001/Desktop/SourceApps/CGApplicationLibrary/CGConnectionController    export IPHONEOS_DEPLOYMENT_TARGET=7.1    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/libtool -static -arch_only armv7 -syslibroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.1.sdk -L/Users/nbvikingsidiot001/Desktop/SourceApps/CGApplicationLibrary/CGConnectionController/build/Debug-iphoneos -filelist /Users/nbvikingsidiot001/Desktop/SourceApps/CGApplicationLibrary/CGConnectionController/build/CGConnectionController.build/Debug-iphoneos/CGConnectionController.build/Objects-normal/armv7/CGConnectionController.LinkFileList -ObjC -framework Parse -framework Foundation -o /Users/nbvikingsidiot001/Desktop/SourceApps/CGApplicationLibrary/CGConnectionController/build/Debug-iphoneos/libCGConnectionController.a36"AE139023-5418-4B12-BA19-7087F4D17788-
+b2CB3854F-5478-4975-92F7-81505A957C1C
 
 CPBXCp CGConnectionController/CGConnectionController.h build/Debug-iphoneos/include/CGConnectionController/CGConnectionController.h
 r0
