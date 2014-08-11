@@ -1,49 +1,28 @@
 //
 //  CGConnectionController.h
-//  CGConnectionController
+//  REPO
 //
-//  Created by Chase Gorectke on 3/31/14.
-//  Copyright (c) 2014 Revision Works, LLC. All rights reserved.
+//  Created by Charles Gorectke on 7/23/14.
+//  Copyright (c) 2014 Jackson. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
-#import "CGManagedObject.h"
+#import "CGConnection.h"
 
-typedef enum CGConnectionType
-{
-    kCGConnectionNone,
-    kCGConnectionServer,
-    kCGConnectionLibrary,
-    kCGConnectionLocal
-} CGConnectionType;
+@interface CGConnectionController : CGConnection
 
-@interface CGConnectionController : NSObject
+//@property (weak, nonatomic) id<CGAuthConnectionDelegate> syncDelegate;
+@property (assign, readonly) BOOL loggedIn;
 
 + (instancetype)sharedConnection;
 
-- (void)addSource:(NSString *)name withType:(CGConnectionType)type;
+- (void)addConnectionWithBaseURL:(NSString *)baseURL;
 
-// public
-//
-// add server  (name, url, ssl, ...)
-// add library (name, appId, appKey, ...)
-// add local   (name, beacon_name)
-//
-// private
-//
-// specify connection of type
-// specify connection of type and name
-//
-// retrieval methods
-//
-// ....
+- (void)checkForAuthentication;
+- (void)loginWithUsername:(NSString *)username andPassword:(NSString *)password;
+- (void)loginWithUsername:(NSString *)username andPassword:(NSString *)password withCompletion:(void(^)(NSError * error))completion;
 
-- (CGManagedObject *)getObjectWithId:(NSString *)objId forType:(NSString *)type;
-
-//- (CGManagedObject *)retrieveObjectOnServer:(NSString *)objId;
-- (NSArray *)grabAllServerObjectsWithName:(NSString *)className; // forUserKey:(NSString *)relKey;
-- (NSArray *)grabAllServerObjectsWithName:(NSString *)className orderAscendingByKey:(NSString *)key;
-- (NSArray *)grabAllServerObjectsWithName:(NSString *)className orderDescendingByKey:(NSString *)key;
-- (NSArray *)grabAllServerObjectsWithName:(NSString *)className orderedByKey:(NSString *)key ascending:(BOOL)ascend;
+- (void)autoAddLocalConnections:(BOOL)autoAdd;
+- (void)autoAddLocalConnections:(BOOL)autoAdd withCertifacate:(NSString *)certName;
 
 @end

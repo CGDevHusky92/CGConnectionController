@@ -1,33 +1,47 @@
 //
 //  CGConnectionController.m
-//  CGConnectionController
+//  REPO
 //
-//  Created by Chase Gorectke on 3/31/14.
-//  Copyright (c) 2014 Revision Works, LLC. All rights reserved.
+//  Created by Charles Gorectke on 7/23/14.
+//  Copyright (c) 2014 Jackson. All rights reserved.
 //
 
-#import <Parse/Parse.h>
+#import <MultipeerConnectivity/MultipeerConnectivity.h>
 #import "CGConnectionController.h"
+#import "CGServerConnection.h"
+#import "CGLocalConnection.h"
 
-@interface CGConnectionController ()
+#import "Reachability.h"
 
-@property (nonatomic, strong) NSMutableArray *syncLibraries;
-@property (nonatomic, strong) NSMutableArray *syncURLs;
-@property (nonatomic, strong) NSMutableArray *syncDevices;
+#import "UserSecurityController.h"
+
+@interface CGConnectionController () <MCNearbyServiceAdvertiserDelegate, MCNearbyServiceBrowserDelegate>
+
+@property (strong, nonatomic) CGServerConnection * priorityConnection;
+@property (strong, nonatomic) NSMutableArray * localConnections;
+
+@property (assign, nonatomic) BOOL autoAddLocalConnections;
+@property (assign, atomic) BOOL online;
+
+@property (strong, nonatomic) NSString * certName;
+
+//@property (nonatomic, strong) MCSession *session;
+@property (nonatomic, strong) MCNearbyServiceAdvertiser *advertiser;
+@property (nonatomic, strong) MCNearbyServiceBrowser *browser;
+
+- (void)addLocalConnectionWithName:(NSString *)name;
 
 @end
 
 @implementation CGConnectionController
-@synthesize syncLibraries=_syncLibraries;
-@synthesize syncURLs=_syncURLs;
-@synthesize syncDevices=_syncDevices;
+@synthesize loggedIn=_loggedIn;
 
 + (instancetype)sharedConnection
 {
     static dispatch_once_t once;
-    static CGConnectionController *sharedConnection;
+    static CGConnectionController *sharedConnection = nil;
     dispatch_once(&once, ^{
-        sharedConnection = [[self alloc] init];
+        sharedConnection = [[CGConnectionController alloc] init];
     });
     return sharedConnection;
 }
@@ -36,200 +50,378 @@
 {
     self = [super init];
     if (self) {
-        _syncLibraries = [[NSMutableArray alloc] init];
-        _syncURLs = [[NSMutableArray alloc] init];
-        _syncDevices = [[NSMutableArray alloc] init];
+        _online = YES;
+        _autoAddLocalConnections = NO;
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reachabilityDidNotifyOnline) name:kReachabilityOnlineNotification object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reachabilityDidNotifyOffline) name:kReachabilityOfflineNotification object:nil];
     }
     return self;
 }
 
-- (void)addSource:(NSString *)name withType:(CGConnectionType)type
+- (void)addConnectionWithBaseURL:(NSString *)baseURL
 {
-    switch (type) {
-        case kCGConnectionLibrary:
-            [_syncLibraries addObject:name];
-            break;
-        case kCGConnectionServer:
-            [_syncURLs addObject:name];
-            break;
-        case kCGConnectionLocal:
-            [_syncDevices addObject:name];
-            break;
-        case kCGConnectionNone:
-        default:
-            break;
-    }
+    if (!baseURL) return;
+    _priorityConnection = [[CGServerConnection alloc] initWithBaseURL:baseURL];
+    _priorityConnection.authDelegate = self;
+    _priorityConnection.dataDelegate = self;
 }
 
-- (CGConnectionType)defaultSource
-{
-    if ([_syncURLs count] > 0) {
-        return kCGConnectionServer;
-    } else if ([_syncLibraries count] > 0) {
-        return kCGConnectionLibrary;
-    } else if ([_syncDevices count] > 0) {
-        return kCGConnectionLocal;
-    }
-    return kCGConnectionNone;
-}
 
-#pragma mark - Grab server objects
 
-- (CGManagedObject *)retrieveObjectOnServer:(NSString *)objId
-{
-#warning Implement
-    return nil;
-}
+#warning Add reachability and other authentication checks
 
-- (NSArray *)grabAllServerObjectsWithName:(NSString *)className
-{
-    return [self grabAllServerObjectsWithName:className orderAscendingByKey:nil];
-}
 
-- (NSArray *)grabAllServerObjectsWithName:(NSString *)className orderAscendingByKey:(NSString *)key
-{
-    return [self grabAllServerObjectsWithName:className orderedByKey:key ascending:YES];
-}
 
-- (NSArray *)grabAllServerObjectsWithName:(NSString *)className orderDescendingByKey:(NSString *)key
-{
-    return [self grabAllServerObjectsWithName:className orderedByKey:key ascending:NO];
-}
+#pragma mark - Server Connection Helper Methods
 
-- (NSArray *)grabAllServerObjectsWithName:(NSString *)className orderedByKey:(NSString *)key ascending:(BOOL)ascend
+- (void)updateDictionary
 {
-    if (!className || ![PFUser currentUser]) return nil;
     
-    NSError *error = nil;
-    switch ([self defaultSource]) {
-        case kCGConnectionLibrary:
-            if ([_syncLibraries count] > 0 && [[_syncLibraries objectAtIndex:0] isEqualToString:@"Parse"]) {
-                PFQuery *query = [PFQuery queryWithClassName:className];
-                query.limit = 1000;
-                
-                if (key) {
-                    if (ascend) {
-                        [query orderByAscending:key];
-                    } else {
-                        [query orderByDescending:key];
-                    }
-                }
-                
-                NSArray *objects = [query findObjects:&error];
-                
-                if (error) {
-                    NSLog(@"Error: %@", [error localizedDescription]);
-                }
-                
-                return objects;
-            }
-            break;
-        case kCGConnectionServer:
-            
-            break;
-        case kCGConnectionLocal:
-            
-            break;
-        case kCGConnectionNone:
-        default:
-            break;
+}
+
+#pragma mark - MCAdvertiser Delegate
+
+- (void)advertiser:(MCNearbyServiceAdvertiser *)advertiser didReceiveInvitationFromPeer:(MCPeerID *)peerID withContext:(NSData *)context invitationHandler:(void (^)(BOOL, MCSession *))invitationHandler
+{
+    NSLog(@"Invited Connection %@", [peerID displayName]);
+//    invitationHandler(YES, self.session);
+}
+
+- (void)advertiser:(MCNearbyServiceAdvertiser *)advertiser didNotStartAdvertisingPeer:(NSError *)error
+{
+    if (error) {
+        NSLog(@"Error: %@", [error localizedDescription]);
+    }
+}
+
+#pragma mark - MCBrowser Delegate
+
+- (void)browser:(MCNearbyServiceBrowser *)browser foundPeer:(MCPeerID *)peerID withDiscoveryInfo:(NSDictionary *)info
+{
+    MCPeerID *myPeerID = [self globalPeerID];
+    if (myPeerID.hash > peerID.hash) {
+//        if (![[self.session connectedPeers] containsObject:peerID]) {
+//            [browser invitePeer:peerID toSession:self.session withContext:nil timeout:0.0];
+//        }
+    }
+}
+
+- (void)browser:(MCNearbyServiceBrowser *)browser lostPeer:(MCPeerID *)peerID {}
+
+- (void)browser:(MCNearbyServiceBrowser *)browser didNotStartBrowsingForPeers:(NSError *)error
+{
+    NSLog(@"Error: %@", [error localizedDescription]);
+}
+
+//// Reload this particular table view row on the main thread
+//dispatch_async(dispatch_get_main_queue(), ^{
+//    NSIndexPath *newIndexPath = [NSIndexPath indexPathForRow:idx inSection:0];
+//    [self.tableView reloadRowsAtIndexPaths:@[newIndexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+//});
+
+#pragma mark - Local Connection Helper Methods
+
+- (void)autoAddLocalConnections:(BOOL)autoAdd
+{
+    [self autoAddLocalConnections:autoAdd withCertifacate:nil];
+}
+
+- (void)autoAddLocalConnections:(BOOL)autoAdd withCertifacate:(NSString *)certName
+{
+    _autoAddLocalConnections = autoAdd;
+    MCPeerID *peerId = [self globalPeerID];
+    
+    if (certName) {
+        //        self.session = [[MCSession alloc] initWithPeer:peerId securityIdentity:nil encryptionPreference:MCEncryptionNone];
+        self.advertiser = [[MCNearbyServiceAdvertiser alloc] initWithPeer:peerId discoveryInfo:nil serviceType:@"jackson-repo"];
+        self.browser = [[MCNearbyServiceBrowser alloc] initWithPeer:peerId serviceType:@"jackson-repo"];
+    } else {
+        //        self.session = [[MCSession alloc] initWithPeer:peerId securityIdentity:nil encryptionPreference:MCEncryptionNone];
+        self.advertiser = [[MCNearbyServiceAdvertiser alloc] initWithPeer:peerId discoveryInfo:nil serviceType:@"jackson-repo"];
+        self.browser = [[MCNearbyServiceBrowser alloc] initWithPeer:peerId serviceType:@"jackson-repo"];
     }
     
-    return nil;
+    //    self.session.delegate = self;
+    self.advertiser.delegate = self;
+    self.browser.delegate = self;
+    
+    [self.advertiser startAdvertisingPeer];
+    [self.browser startBrowsingForPeers];
 }
 
-//#pragma mark - Custom Decision Grab Tools
+- (void)addLocalConnectionWithName:(NSString *)name
+{
+    if (!name) return;
+}
+
+#pragma mark - Private Priority Methods
+
+- (CGConnection *)priorityConnection
+{
+    if (_priorityConnection) return _priorityConnection;
+    if (_localConnections && [_localConnections count] > 0) return [_localConnections objectAtIndex:0];
+    @throw [NSException exceptionWithName:NSInternalInconsistencyException reason:[NSString stringWithFormat:@"CGConnectionController must have a connection"] userInfo:nil];
+}
+
+- (void)checkForAuthentication
+{
+    if (_priorityConnection) {
+        [_priorityConnection checkForAuthentication];
+        
+        if ([_priorityConnection authenticated]) {
+            //            return YES;
+        } else {
+            
+        }
+    }
+    
+    //    return YES;
+}
+
+- (void)loginWithUsername:(NSString *)username andPassword:(NSString *)password
+{
+    [self loginWithUsername:username andPassword:password withCompletion:nil];
+}
+
+- (void)loginWithUsername:(NSString *)username andPassword:(NSString *)password withCompletion:(void(^)(NSError * error))completion
+{
+    if (!_priorityConnection) return;
+    if (!username || !password) return;
+    [[self priorityConnection] loginWithUsername:username andPassword:password withCompletion:completion];
+}
+
+#pragma mark - CGConnection Method Protocol Return Overrides
+
+- (void)syncObjectType:(NSString *)type withID:(NSString *)objectId
+{
+    if (!type || !objectId) return;
+    [self syncObjectType:type withID:objectId andCompletion:nil];
+}
+
+- (void)deleteObjectType:(NSString *)type withID:(NSString *)objectId
+{
+    if (!type || !objectId) return;
+    [self deleteObjectType:type withID:objectId andCompletion:nil];
+}
+
+- (void)requestObjectWithType:(NSString *)type andID:(NSString *)objectId
+{
+    if (!type || !objectId) return;
+    [self requestObjectWithType:type andID:objectId andCompletion:nil];
+}
+
+- (void)requestObjectsWithType:(NSString *)type
+{
+    if (!type) return;
+    [self requestObjectsWithType:type andLimit:0];
+}
+
+- (void)requestObjectsWithType:(NSString *)type andLimit:(NSUInteger)num
+{
+    if (!type) return;
+    [self requestObjectsWithType:type limit:num andCompletion:nil];
+}
+
+- (void)requestObjectsWithType:(NSString *)type afterDate:(NSDate *)date
+{
+    if (!type) return;
+    [self requestObjectsWithType:type afterDate:date andCompletion:nil];
+}
+
+- (void)requestStatusOfObjectsWithType:(NSString *)type
+{
+    if (!type) return;
+    [self requestStatusOfObjectsWithType:type andCompletion:nil];
+}
+
+- (void)requestCountOfObjectsWithType:(NSString *)type
+{
+    if (!type) return;
+    [self requestCountOfObjectsWithType:type andCompletion:nil];
+}
+
+#pragma mark - CGConnection Completion Return Overrides
+
+- (void)syncObjectType:(NSString *)type withID:(NSString *)objectId andCompletion:(void(^)(NSError * error))completion
+{
+    if (!type || !objectId) return;
+    [[self priorityConnection] syncObjectType:type withID:objectId andCompletion:completion];
+}
+
+- (void)deleteObjectType:(NSString *)type withID:(NSString *)objectId andCompletion:(void(^)(NSError * error))completion
+{
+    if (!type || !objectId) return;
+    [[self priorityConnection] deleteObjectType:type withID:objectId andCompletion:completion];
+}
+
+- (void)requestObjectWithType:(NSString *)type andID:(NSString *)objectId andCompletion:(void (^)(NSDictionary *, NSError * error))completion
+{
+    if (!type || !objectId) return;
+    [[self priorityConnection] requestObjectWithType:type andID:objectId andCompletion:completion];
+}
+
+- (void)requestObjectsWithType:(NSString *)type andCompletion:(void(^)(NSArray * retObjects, NSError * error))completion
+{
+    if (!type) return;
+    [[self priorityConnection] requestObjectsWithType:type andCompletion:completion];
+}
+
+- (void)requestObjectsWithType:(NSString *)type limit:(NSUInteger)num andCompletion:(void(^)(NSArray * retObjects, NSError * error))completion
+{
+    if (!type) return;
+    [[self priorityConnection] requestObjectsWithType:type limit:num andCompletion:completion];
+}
+
+- (void)requestObjectsWithType:(NSString *)type afterDate:(NSDate *)date andCompletion:(void(^)(NSArray * retObjects, NSError * error))completion
+{
+    if (!type) return;
+    [[self priorityConnection] requestObjectsWithType:type afterDate:date andCompletion:completion];
+}
+
+- (void)requestStatusOfObjectsWithType:(NSString *)type andCompletion:(void(^)(NSDictionary * statusDic, NSError * error))completion
+{
+    if (!type) return;
+    [[self priorityConnection] requestStatusOfObjectsWithType:type andCompletion:completion];
+}
+
+- (void)requestCountOfObjectsWithType:(NSString *)type andCompletion:(void(^)(NSUInteger count, NSError * error))completion
+{
+    if (!type) return;
+    [[self priorityConnection] requestCountOfObjectsWithType:type andCompletion:completion];
+}
+
+//#pragma mark - CGAuthConnection Protocol
 //
-//- (NSArray *)decisionsForGroup:(int)group
+//- (void)connection:(CGConnection *)connection didConnectWithUserInfo:(NSDictionary *)userInfo
 //{
-//    NSError *error = nil;
-//    
-//    // 1
-//    if ([PFUser currentUser]) {
-//        PFQuery *rec = [PFQuery queryWithClassName:@"Decision"];
-//        [rec whereKey:@"receiver" equalTo:[[PFUser currentUser] username]];
-//        [rec orderByDescending:@"createdAt"];
-//        rec.limit = 50;
-//        NSArray *recObjs = [rec findObjects:&error];
-//        if (error) {
-//            NSLog(@"Error: %@", [error localizedDescription]);
-//            return nil;
-//        }
-//        
-//        // 2
-//        PFQuery *sen = [PFQuery queryWithClassName:@"Decision"];
-//        [sen whereKey:@"sender" equalTo:[[PFUser currentUser] username]];
-//        [sen orderByDescending:@"createdAt"];
-//        sen.limit = 1000;
-//        NSArray *senObjs = [sen findObjects:&error];
-//        if (error) {
-//            NSLog(@"Error: %@", [error localizedDescription]);
-//            return nil;
-//        }
-//        
-//        // 3
-//        // Unique array of objectIds
-//        // Array of the unique objects
-//        NSArray *senUniqueObjs = [self decisionsStripUniqueObjects:senObjs];
-//        
-//        // 4
-//        // Combine Unique Array and Rec Array Sorted By "createdAt"
-//        // Remove Anything after 50 items
-//        NSArray *combinedArray = [self decisionsSortedArrayOfObjects:recObjs andObjects:senUniqueObjs withLimit:YES];
-//        
-//        // 5
-//        // Iterate over remaining array and find objects contained in the unique array
-//        // add those objects to separate array and call decisionsFinalSelfSenderGroup on there valueForKey:@"choices"
-//        NSMutableArray *combMutable = [combinedArray mutableCopy];
-//        [combMutable removeObjectsInArray:recObjs];
-//        NSArray *finalUnique = [combMutable valueForKeyPath:@"choices"];
-//        NSArray *totalSend = [self decisionsFinalSenderFromGatheredObjects:senObjs forKeys:finalUnique];
-//        
-//        // 6
-//        // Recombine into single array
-//        NSArray *ret = [self decisionsSortedArrayOfObjects:recObjs andObjects:totalSend withLimit:YES];
-//        return ret;
-//    }
-//    
-//    return nil;
+//    if (self.authDelegateRespondsTo.didConnectWithUserInfo)
+//        [self.authDelegate connection:connection didConnectWithUserInfo:userInfo];
 //}
 //
-//- (NSArray *)decisionsStripUniqueObjects:(NSArray *)objects
+//- (void)connection:(CGConnection *)connection didFailToConnectWithError:(NSError *)error
 //{
-//    if (!objects) return nil;
-//    NSMutableArray *ret = [[NSMutableArray alloc] init];
-//    NSMutableArray *uniqueObjKeys = [[objects valueForKeyPath:@"@distinctUnionOfObjects.choices"] mutableCopy];
-//    for (PFDecision *dec in objects) {
-//        if ([uniqueObjKeys containsObject:[dec choices]]) {
-//            [ret addObject:dec];
-//            [uniqueObjKeys removeObject:[dec choices]];
-//        }
-//    }
-//    return ret;
+//    NSLog(@"Error: %@", error);
+//    if (self.authDelegateRespondsTo.didFailToConnectWithError)
+//        [self.authDelegate connection:connection didFailToConnectWithError:error];
 //}
 //
-//- (NSArray *)decisionsSortedArrayOfObjects:(NSArray *)objsOne andObjects:(NSArray *)objsTwo withLimit:(BOOL)limit
+//- (void)connection:(CGConnection *)connection didFailToAuthenticateWithError:(NSError *)error
 //{
-//    if (!objsOne || !objsTwo) return nil;
-//    NSMutableArray *ret = [objsOne mutableCopy];
-//    ret = [[ret arrayByAddingObjectsFromArray:objsTwo] mutableCopy];
-//    [ret sortUsingDescriptors:[NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"createdAt" ascending:YES]]];
-//    if (limit && [ret count] > DECISION_PULL_LIMIT) {
-//        [ret removeObjectsInRange:NSMakeRange((DECISION_PULL_LIMIT), [ret count] - DECISION_PULL_LIMIT)];
-//    }
-//    return ret;
+//    if (self.authDelegateRespondsTo.didFailToAuthenticateWithError)
+//        [self.authDelegate connection:connection didFailToAuthenticateWithError:error];
 //}
 //
-//- (NSArray *)decisionsFinalSenderFromGatheredObjects:(NSArray *)objs forKeys:(NSArray *)objIds
+//#pragma mark - CGDataConnection Protocol
+//
+//- (void)connection:(CGConnection *)connection didSyncObjectWithId:(NSString *)objectId
 //{
-//    if (!objs || !objIds) return nil;
-//    NSMutableArray *ret = [[NSMutableArray alloc] init];
-//    for (PFDecision *dec in objs) {
-//        if ([objIds containsObject:[dec choices]]) {
-//            [ret addObject:dec];
-//        }
-//    }
-//    return ret;
+//    if (self.dataDelegateRespondsTo.didSyncObject)
+//        [self.dataDelegate connection:connection didSyncObjectWithId:objectId];
 //}
+//
+//- (void)connection:(CGConnection *)connection didFailToSyncObjectWithId:(NSString *)objectId withError:(NSError *)error
+//{
+//    if (self.dataDelegateRespondsTo.didFailToSyncObjectWithError)
+//        [self.dataDelegate connection:connection didFailToSyncObjectWithId:objectId withError:error];
+//}
+//
+//- (void)connection:(CGConnection *)connection didDeleteObjectWithId:(NSString *)objectId
+//{
+//    if (self.dataDelegateRespondsTo.didDeleteObject)
+//        [self.dataDelegate connection:connection didSyncObjectWithId:objectId];
+//}
+//
+//- (void)connection:(CGConnection *)connection didFailToDeleteObjectWithId:(NSString *)objectId withError:(NSError *)error
+//{
+//    if (self.dataDelegateRespondsTo.didFailToDeleteObjectWithError)
+//        [self.dataDelegate connection:connection didFailToDeleteObjectWithId:objectId withError:error];
+//}
+//
+//- (void)connection:(CGConnection *)connection didReceiveObject:(NSDictionary *)object
+//{
+//    if (self.dataDelegateRespondsTo.didReceiveObject)
+//        [self.dataDelegate connection:connection didReceiveObject:object];
+//}
+//
+//- (void)connection:(CGConnection *)connection didFailToReceiveObjectWithId:(NSString *)objectId withError:(NSError *)error
+//{
+//    if (self.dataDelegateRespondsTo.didFailToReceiveObjectWithError)
+//        [self.dataDelegate connection:connection didFailToReceiveObjectWithId:objectId withError:error];
+//}
+//
+//- (void)connection:(CGConnection *)connection didReceiveObjects:(NSArray *)objects
+//{
+//    if (self.dataDelegateRespondsTo.didReceiveObjects)
+//        [self.dataDelegate connection:connection didReceiveObjects:objects];
+//}
+//
+//- (void)connection:(CGConnection *)connection didFailToReceiveObjectsWithError:(NSError *)error
+//{
+//    if (self.dataDelegateRespondsTo.didFailToReceiveObjectsWithError)
+//        [self.dataDelegate connection:connection didFailToReceiveObjectsWithError:error];
+//}
+//
+//- (void)connection:(CGConnection *)connection didReceiveStatusForType:(NSDictionary *)status
+//{
+//    if (self.dataDelegateRespondsTo.didReceiveStatusForType)
+//        [self.dataDelegate connection:connection didReceiveStatusForType:status];
+//}
+//
+//- (void)connection:(CGConnection *)connection didFailToReceiveStatusForObjectType:(NSString *)type withError:(NSError *)error
+//{
+//    if (self.dataDelegateRespondsTo.didFailToReceiveStatusForTypeWithError)
+//        [self.dataDelegate connection:connection didFailToReceiveStatusForType:type withError:error];
+//}
+//
+//- (void)connection:(CGConnection *)connection didReceiveCount:(NSUInteger)count forObjectType:(NSString *)type
+//{
+//    if (self.dataDelegateRespondsTo.didReceiveCountForObject)
+//        [self.dataDelegate connection:connection didReceiveCount:count forObjectType:type];
+//}
+//
+//- (void)connection:(CGConnection *)connection didFailToReceiveCountForObjectType:(NSString *)type withError:(NSError *)error
+//{
+//    if (self.dataDelegateRespondsTo.didFailToReceiveCountForObjectWithError)
+//        [self.dataDelegate connection:connection didFailToReceiveCountForObjectType:type withError:error];
+//}
+
+#pragma mark - Reachability Protocol
+
+- (void)reachabilityDidNotifyOnline
+{
+    NSLog(@"Device has network");
+    _online = YES;
+}
+
+- (void)reachabilityDidNotifyOffline
+{
+    NSLog(@"Device doesn't have network");
+    _online = NO;
+}
+
+#pragma mark - Global PeerID
+
+- (MCPeerID *)globalPeerID
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSData  *peerIDData = [defaults dataForKey:kCGPeerIDKey];
+    MCPeerID *peerID;
+    if (peerIDData) {
+        peerID = [NSKeyedUnarchiver unarchiveObjectWithData:peerIDData];
+    } else {
+        peerID = [[MCPeerID alloc] initWithDisplayName:[[UserSecurityController sharedLogin] nick_nm]];
+        peerIDData = [NSKeyedArchiver archivedDataWithRootObject:peerID];
+        [defaults setObject:peerID forKey:kCGPeerIDKey];
+        [defaults synchronize];
+    }
+    return peerID;
+}
+
+#pragma mark - Cleanup Protocol
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
 
 @end

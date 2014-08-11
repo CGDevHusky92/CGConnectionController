@@ -1,9 +1,9 @@
 //
 //  CGServerConnection.h
-//  CGConnectionController
+//  REPO
 //
-//  Created by Chase Gorectke on 4/15/14.
-//  Copyright (c) 2014 Revision Works, LLC. All rights reserved.
+//  Created by Charles Gorectke on 7/23/14.
+//  Copyright (c) 2014 Jackson. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -11,6 +11,14 @@
 
 @interface CGServerConnection : CGConnection
 
-@property (nonatomic, strong) NSURL *url;
+@property (strong, nonatomic) NSString * baseURL;
+@property (assign, nonatomic) BOOL authenticated;
+
+- (instancetype)initWithBaseURL:(NSString *)urlPath;
+
+- (void)checkForAuthentication;
+- (void)loginWithUsername:(NSString *)username andPassword:(NSString *)password;
+- (void)loginWithUsername:(NSString *)username andPassword:(NSString *)password withCompletion:(void(^)(NSError * error))completion;
 
 @end
+
