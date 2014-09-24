@@ -16,9 +16,13 @@
 
 - (instancetype)initWithBaseURL:(NSString *)urlPath;
 
-- (void)checkForAuthentication;
+//- (void)checkForAuthentication;
 - (void)loginWithUsername:(NSString *)username andPassword:(NSString *)password;
 - (void)loginWithUsername:(NSString *)username andPassword:(NSString *)password withCompletion:(void(^)(NSError * error))completion;
+
+- (NSArray *)registeredClasses;
+- (void)registerClass:(NSString *)className withURLParameter:(NSString *)parameter;
+- (NSString *)urlForRegisteredClass:(NSString *)className;
 
 @end
 

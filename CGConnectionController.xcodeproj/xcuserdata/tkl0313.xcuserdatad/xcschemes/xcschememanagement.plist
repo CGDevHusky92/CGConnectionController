@@ -7,17 +7,22 @@
 		<key>CGConnectionController.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>11</integer>
+			<integer>12</integer>
+		</dict>
+		<key>CGConnectionControllerTests.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>13</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>2ECA4C8518EA078200D0EB46</key>
+		<key>D38A455119D34F8C007AD9DC</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>2ECA4C9518EA078200D0EB46</key>
+		<key>D38A455C19D34F8D007AD9DC</key>
 		<dict>
 			<key>primary</key>
 			<true/>

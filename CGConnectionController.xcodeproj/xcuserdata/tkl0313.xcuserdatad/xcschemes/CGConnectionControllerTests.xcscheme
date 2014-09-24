@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0510"
+   LastUpgradeVersion = "0600"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -9,14 +9,14 @@
          <BuildActionEntry
             buildForTesting = "YES"
             buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "2ECA4C8518EA078200D0EB46"
-               BuildableName = "libCGConnectionController.a"
-               BlueprintName = "CGConnectionController"
+               BlueprintIdentifier = "D38A455C19D34F8D007AD9DC"
+               BuildableName = "CGConnectionControllerTests.xctest"
+               BlueprintName = "CGConnectionControllerTests"
                ReferencedContainer = "container:CGConnectionController.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -32,13 +32,22 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "2ECA4C9518EA078200D0EB46"
+               BlueprintIdentifier = "D38A455C19D34F8D007AD9DC"
                BuildableName = "CGConnectionControllerTests.xctest"
                BlueprintName = "CGConnectionControllerTests"
                ReferencedContainer = "container:CGConnectionController.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "D38A455C19D34F8D007AD9DC"
+            BuildableName = "CGConnectionControllerTests.xctest"
+            BlueprintName = "CGConnectionControllerTests"
+            ReferencedContainer = "container:CGConnectionController.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
    </TestAction>
    <LaunchAction
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
@@ -49,6 +58,15 @@
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       allowLocationSimulation = "YES">
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "D38A455C19D34F8D007AD9DC"
+            BuildableName = "CGConnectionControllerTests.xctest"
+            BlueprintName = "CGConnectionControllerTests"
+            ReferencedContainer = "container:CGConnectionController.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -58,6 +76,15 @@
       useCustomWorkingDirectory = "NO"
       buildConfiguration = "Release"
       debugDocumentVersioning = "YES">
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "D38A455C19D34F8D007AD9DC"
+            BuildableName = "CGConnectionControllerTests.xctest"
+            BlueprintName = "CGConnectionControllerTests"
+            ReferencedContainer = "container:CGConnectionController.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

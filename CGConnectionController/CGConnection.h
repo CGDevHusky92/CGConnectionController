@@ -12,6 +12,7 @@
 
 typedef struct CGAuthDelegateCalls {
     unsigned int didConnectWithUserInfo;
+    unsigned int didConnectWithUsername;
     unsigned int didFailToConnectWithError;
     unsigned int didFailToAuthenticateWithError;
 } CGAuthDelegateCalls;
@@ -43,6 +44,7 @@ typedef struct CGDataDelegateCalls {
 #pragma mark - CGConnection Auth Protocol
 
 - (void)connection:(CGConnection *)connection didConnectWithUserInfo:(NSDictionary *)userInfo;
+- (void)connection:(CGConnection *)connection didConnectWithUsername:(NSString *)username;
 - (void)connection:(CGConnection *)connection didFailToConnectWithError:(NSError *)error;
 - (void)connection:(CGConnection *)connection didFailToAuthenticateWithError:(NSError *)error;
 

@@ -7,11 +7,12 @@
 //
 
 #import "CGServerConnection.h"
-#import "CGSyncController.h"
-#import "CGDataController.h"
 #import "CGReachability.h"
 
-#import "KeychainItemWrapper.h"
+#import <CGDataController/CGDataController.h>
+
+#define AUTH_PRINT_DEBUG    0
+#define DATA_PRINT_DEBUG    0
 
 @interface CGServerConnection () <NSURLSessionDelegate, NSURLSessionTaskDelegate>
 
@@ -21,14 +22,18 @@
 @property (strong, nonatomic) NSURLSession * session;
 
 @property (strong, nonatomic) NSString * accessToken;
+@property (strong, nonatomic) NSString * refreshToken;
 @property (strong, nonatomic) NSString * tokenType;
 @property (assign, nonatomic) int expirationTime;
+
+@property (nonatomic, strong) NSMutableDictionary * registeredClassesWithURLs;
 
 @end
 
 @implementation CGServerConnection
 @synthesize baseURL=_baseURL;
 @synthesize authenticated=_authenticated;
+@synthesize registeredClassesWithURLs=_registeredClassesWithURLs;
 
 - (instancetype)init
 {
@@ -50,19 +55,24 @@
     return self;
 }
 
-- (void)checkForAuthentication
+- (NSArray *)registeredClasses
 {
-#warning needs better reachability checks
-    KeychainItemWrapper *keychainItem = [[KeychainItemWrapper alloc] initWithIdentifier:@"REPOKeyChainLoginKey" accessGroup:nil];
-    NSString *user = [keychainItem objectForKey:(__bridge id)(kSecAttrAccount)];
-    NSString *pass = [keychainItem objectForKey:(__bridge id)(kSecValueData)];
-    if (user && pass) {
-        // Account already exists
-        NSLog(@"%@ %@", user, pass);
-        [self loginWithUsername:user andPassword:pass];
-    } else {
-        NSLog(@"No Keychain Items Saved");
+    return [_registeredClassesWithURLs allKeys];
+}
+
+- (void)registerClass:(NSString *)className withURLParameter:(NSString *)parameter
+{
+    if (!_registeredClassesWithURLs) _registeredClassesWithURLs = [[NSMutableDictionary alloc] init];
+    [_registeredClassesWithURLs setObject:parameter forKey:className];
+}
+
+- (NSString *)urlForRegisteredClass:(NSString *)className
+{
+    NSString * urlPath = [_registeredClassesWithURLs objectForKey:className];
+    if (!urlPath) {
+#warning throw Exception
     }
+    return urlPath;
 }
 
 - (void)loginWithUsername:(NSString *)username andPassword:(NSString *)password
@@ -72,25 +82,44 @@
 
 - (void)loginWithUsername:(NSString *)username andPassword:(NSString *)password withCompletion:(void(^)(NSError * error))completion
 {
-    KeychainItemWrapper *keychainItem = [[KeychainItemWrapper alloc] initWithIdentifier:@"REPOKeyChainLoginKey" accessGroup:nil];
-    [keychainItem setObject:username forKey:(__bridge id)kSecAttrAccount];
-    [keychainItem setObject:password forKey:(__bridge id)kSecValueData];
-    
+#ifdef AUTH_PRINT_DEBUG
+    NSLog(@"I am authing");
+#endif
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/auth/", _baseURL]]];
     [request setHTTPMethod:@"POST"];
     NSString *unencodedAuth = [NSString stringWithFormat:@"%@:%@", username, password];
     NSString *encodedAuth = [self base64ForString:unencodedAuth];
     [request addValue:[NSString stringWithFormat:@"Basic %@", encodedAuth] forHTTPHeaderField:@"Authorization"];
+    [self genericAuthWithRequest:request withCompletion:completion];
+}
+
+- (void)attemptRefreshOfAuthenticationWithCompletion:(void(^)(NSError * error))completion
+{
+#ifdef AUTH_PRINT_DEBUG
+    NSLog(@"I am reauthing");
+#endif
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/auth/", _baseURL]]];
+    [request setHTTPMethod:@"POST"];
+    [request addValue:[NSString stringWithFormat:@"Refresh %@", _refreshToken] forHTTPHeaderField:@"Authorization"];
+    [self genericAuthWithRequest:request withCompletion:completion];
+}
+
+- (void)genericAuthWithRequest:(NSMutableURLRequest *)request withCompletion:(void(^)(NSError * error))completion
+{
     [self genericServerRequestWithRequest:request withCompletion:^(id response, NSError * error) {
         if (!error) {
             NSDictionary * responseDic = (NSDictionary *)response;
             _accessToken = [responseDic objectForKey:@"access_token"];
+            _refreshToken = [responseDic objectForKey:@"refresh_token"];
             _tokenType = [responseDic objectForKey:@"token_type"];
             _expirationTime = [[responseDic objectForKey:@"expires_in"] intValue];
             
+#ifdef AUTH_PRINT_DEBUG
             NSLog(@"Access Token: %@", _accessToken);
+            NSLog(@"Refresh Token: %@", _refreshToken);
             NSLog(@"Expiration: %d", _expirationTime);
             NSLog(@"Token Type: %@", _tokenType);
+#endif
             
             _authenticated = YES;
             if (completion) {
@@ -121,27 +150,21 @@
 
 - (void)syncObjectType:(NSString *)type withID:(NSString *)objectId andCompletion:(void(^)(NSError * error))completion
 {
-    if (!_authenticated) {
-        return;
-    }
-    if (!type || !objectId) return;
-    
+    if (!_authenticated || !type || !objectId) return;
     
     NSError * serializeError;
-    NSString * classURL = [[CGSyncController sharedSync] urlForRegisteredClass:type];
+    NSString * classURL = [self urlForRegisteredClass:type];
     
+#warning This should be changed so that we are all ready passing in a blob of object data.... should look at generalizing this for NSObject rather then NSManagedObject... maybe specialize each one as an override...
     NSManagedObject * manObj = [[CGDataController sharedData] managedObjectForClass:type withId:objectId];
     NSDictionary * obj = [manObj dictionaryFromObject];
     
-//    obj = [self cleanBooleans:obj];
-    
-    NSLog(@"obj: %@", obj);
+#ifdef DATA_PRINT_DEBUG
+    NSLog(@"Dictionary To Sync - %@", obj);
+#endif
     
     NSData * objSerialized = [NSJSONSerialization dataWithJSONObject:obj options:NSJSONWritingPrettyPrinted error:&serializeError];
     if (objSerialized) {
-        
-        NSLog(@"JSON: %@", [[NSString alloc] initWithData:objSerialized encoding:NSUTF8StringEncoding]);
-        
         NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/%@/%@", _baseURL, classURL, objectId]]];
         [request addValue:[NSString stringWithFormat:@"Bearer %@", _accessToken] forHTTPHeaderField:@"Authorization"];
         [request addValue:@"text/plain; charset=utf8" forHTTPHeaderField:@"Content-Type"];
@@ -153,17 +176,15 @@
                 if (completion) {
                     completion(nil);
                 } else {
-                    if (self.dataDelegateRespondsTo.didSyncObject) {
+                    if (self.dataDelegateRespondsTo.didSyncObject)
                         [self.dataDelegate connection:self didSyncObjectWithId:objectId];
-                    }
                 }
             } else {
                 if (completion) {
                     completion(error);
                 } else {
-                    if (self.dataDelegateRespondsTo.didFailToSyncObjectWithError) {
+                    if (self.dataDelegateRespondsTo.didFailToSyncObjectWithError)
                         [self.dataDelegate connection:self didFailToSyncObjectWithId:objectId withError:error];
-                    }
                 }
             }
         }];
@@ -172,27 +193,6 @@
             [self.dataDelegate connection:self didFailToSyncObjectWithId:objectId withError:serializeError];
     }
 }
-
-
-- (NSDictionary *)cleanBooleans:(NSDictionary *)input
-{
-    NSMutableDictionary * output = [input mutableCopy];
-    
-    for (NSNumber * boolType in [output allValues]) {
-        if ([boolType isKindOfClass:[NSNumber class]]) {
-            NSLog(@"%s", [boolType objCType]);
-        }
-        
-//        if ([boolType b]) {
-        
-//        }
-    }
-    
-    return output;
-}
-
-
-
 
 - (void)deleteObjectType:(NSString *)type withID:(NSString *)objectId
 {
@@ -209,7 +209,7 @@
         return;
     }
     
-    NSString * classURL = [[CGSyncController sharedSync] urlForRegisteredClass:type];
+    NSString * classURL = [self urlForRegisteredClass:type];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/%@/%@", _baseURL, classURL, objectId]]];
     [request addValue:[NSString stringWithFormat:@"Bearer %@", _accessToken] forHTTPHeaderField:@"Authorization"];
     [request setHTTPMethod:@"DELETE"];
@@ -245,7 +245,7 @@
         return;
     }
     if (!type || !objectId) return;
-    NSString * classURL = [[CGSyncController sharedSync] urlForRegisteredClass:type];
+    NSString * classURL = [self urlForRegisteredClass:type];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/%@/%@", _baseURL, classURL, objectId]]];
     [request addValue:[NSString stringWithFormat:@"Bearer %@", _accessToken] forHTTPHeaderField:@"Authorization"];
     [request setHTTPMethod:@"GET"];
@@ -253,7 +253,12 @@
         if (!error) {
             NSArray * object = (NSArray *)response;
             if (completion) {
-                completion([object objectAtIndex:0], nil);
+                if (object && [object count] > 0) {
+                    completion([object objectAtIndex:0], nil);
+                } else {
+#warning Error????
+                    completion(nil, [NSError errorWithDomain:@"Fuck" code:-1 userInfo:nil]);
+                }
             } else {
                 if (self.dataDelegateRespondsTo.didReceiveObject) {
                     [self.dataDelegate connection:self didReceiveObject:[object objectAtIndex:0]];
@@ -293,8 +298,8 @@
     if (!type) return;
     if (num > 0) {
         NSManagedObject * manObj = [[CGDataController sharedData] nth:num managedObjectForClass:type];
-        NSDate * updatedDate = [[CGSyncController sharedSync] dateUsingStringFromAPI:[manObj updatedAt]];
-        [self requestObjectsWithType:type afterDate:updatedDate andCompletion:completion];
+//        NSDate * updatedDate = [[CGDataController sharedData] dateUsingStringFromAPI:[manObj updatedAt]];
+        [self requestObjectsWithType:type afterDate:[manObj updatedAt] andCompletion:completion];
     } else {
         [self requestObjectsWithType:type afterDate:nil andCompletion:completion];
     }
@@ -311,10 +316,10 @@
         return;
     }
     if (!type) return;
-    NSString * classURL = [[CGSyncController sharedSync] urlForRegisteredClass:type];
+    NSString * classURL = [self urlForRegisteredClass:type];
     NSURL * requestURL;
     if (date) {
-        NSString * dateString = [[CGSyncController sharedSync] dateStringForAPIUsingDate:date];
+        NSString * dateString = [[CGDataController sharedData] dateStringForAPIUsingDate:date];
         requestURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@/after/%@", _baseURL, classURL, dateString]];
     } else {
         requestURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@/", _baseURL, classURL]];
@@ -356,7 +361,7 @@
         return;
     }
     if (!type) return;
-    NSString * classURL = [[CGSyncController sharedSync] urlForRegisteredClass:type];
+    NSString * classURL = [self urlForRegisteredClass:type];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/%@/status", _baseURL, classURL]]];
     [request addValue:[NSString stringWithFormat:@"Bearer %@", _accessToken] forHTTPHeaderField:@"Authorization"];
     [request setHTTPMethod:@"GET"];
@@ -392,7 +397,7 @@
         return;
     }
     if (!type) return;
-    NSString * classURL = [[CGSyncController sharedSync] urlForRegisteredClass:type];
+    NSString * classURL = [self urlForRegisteredClass:type];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/%@/count", _baseURL, classURL]]];
     [request addValue:[NSString stringWithFormat:@"Bearer %@", _accessToken] forHTTPHeaderField:@"Authorization"];
     [request setHTTPMethod:@"GET"];
@@ -423,45 +428,73 @@
 - (void)genericServerRequestWithRequest:(NSMutableURLRequest *)request withCompletion:(void(^)(id response, NSError * error))completion
 {
     if (!request || !completion) return;
-    [[_session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+    [[_session dataTaskWithRequest:request completionHandler:^(NSData * data, NSURLResponse * response, NSError * error) {
         if (!error) {
             if (((NSHTTPURLResponse *)response).statusCode == 200) {
                 if ([[request HTTPMethod] isEqualToString:@"DELETE"]) {
-                    completion(nil, nil);
+                    if (completion)
+                        completion(nil, nil);
                 } else {
                     NSError *jsonError;
                     id jsonObject = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments | NSJSONReadingMutableContainers | NSJSONReadingMutableLeaves error:&jsonError];
-                    completion(jsonObject, jsonError);
+                    if (completion)
+                        completion(jsonObject, jsonError);
                 }
             } else {
-                NSLog(@"Fail point 2");
-                
-                NSString * wwwAuth = [[((NSHTTPURLResponse *)response) allHeaderFields] valueForKey:@"WWW-Authenticate"];
-                
-                NSLog(@"WWW-Auth: %@", wwwAuth);
-                
-                NSMutableDictionary * userInfo = [NSMutableDictionary dictionary];
-                [userInfo setObject:[NSString stringWithFormat:@"WWW-Authenticate Info Held: %@", wwwAuth] forKey:NSLocalizedDescriptionKey];
-                NSError *authError = [[NSError alloc] initWithDomain:@"CGAuthError" code:401 userInfo:userInfo];
-                
-                completion(nil, authError);
-                
-#warning Try to auto reauth...???
-                if (self.authDelegateRespondsTo.didFailToAuthenticateWithError) {
-                    [self.authDelegate connection:self didFailToAuthenticateWithError:authError];
+                id wwwAuth = [[((NSHTTPURLResponse *)response) allHeaderFields] valueForKey:@"WWW-Authenticate"];
+                NSRange result = [wwwAuth rangeOfString:@"invalid_token" options:NSCaseInsensitiveSearch];
+                if (wwwAuth && result.location != NSNotFound) {
+                    [self attemptRefreshOfAuthenticationWithCompletion:^(NSError * error){
+                        if (!error) {
+                            [request setValue:[NSString stringWithFormat:@"Bearer %@", _accessToken] forHTTPHeaderField:@"Authorization"];
+                            [self genericServerRequestWithRequest:request withCompletion:completion];
+                        } else {
+                            NSError *authError = [self generateErrorWithDomain:@"CGAuthError" code:401 andReason:[NSString stringWithFormat:@"WWW-Authenticate Info Held: %@", wwwAuth]];
+                            if (completion) {
+                                completion(nil, authError);
+                            } else {
+                                if (self.authDelegateRespondsTo.didFailToAuthenticateWithError)
+                                    [self.authDelegate connection:self didFailToAuthenticateWithError:authError];
+                            }
+                        }
+                    }];
+                } else if (!wwwAuth) {
+                    NSError *authError = [self generateErrorWithDomain:@"CGConnError" code:402 andReason:[NSString stringWithFormat:@"WWW-Authenticate Info was null indicating a general server error"]];
+                    if (completion) {
+                        completion(nil, authError);
+                    } else {
+                        if (self.authDelegateRespondsTo.didFailToConnectWithError)
+                            [self.authDelegate connection:self didFailToConnectWithError:authError];
+                    }
+                } else {
+                    NSError *authError = [self generateErrorWithDomain:@"CGAuthError" code:401 andReason:[NSString stringWithFormat:@"WWW-Authenticate Info Held: %@", wwwAuth]];
+                    if (completion) {
+                        completion(nil, authError);
+                    } else {
+                        if (self.authDelegateRespondsTo.didFailToAuthenticateWithError)
+                            [self.authDelegate connection:self didFailToAuthenticateWithError:authError];
+                    }
                 }
             }
         } else {
-            NSLog(@"Fail point 1");
-            
-            completion(nil, error);
-            if (self.authDelegateRespondsTo.didFailToConnectWithError)
-                [self.authDelegate connection:self didFailToConnectWithError:error];
+            if (completion) {
+                completion(nil, error);
+            } else {
+                if (self.authDelegateRespondsTo.didFailToConnectWithError)
+                    [self.authDelegate connection:self didFailToConnectWithError:error];
+            }
         }
     }] resume];
 }
 
 #pragma mark - Helper Methods
+
+- (NSError *)generateErrorWithDomain:(NSString *)domain code:(NSInteger)code andReason:(NSString *)reason
+{
+    NSMutableDictionary * userInfo = [NSMutableDictionary dictionary];
+    [userInfo setObject:reason forKey:NSLocalizedDescriptionKey];
+    return [[NSError alloc] initWithDomain:domain code:code userInfo:userInfo];
+}
 
 - (NSString *)base64ForString:(NSString *)str
 {

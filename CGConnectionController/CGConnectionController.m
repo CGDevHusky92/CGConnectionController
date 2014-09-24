@@ -11,9 +11,11 @@
 #import "CGServerConnection.h"
 #import "CGLocalConnection.h"
 
-#import "Reachability.h"
+#import "KeychainItemWrapper.h"
 
-#import "UserSecurityController.h"
+#import "CGReachability.h"
+
+//#import "UserSecurityController.h"
 
 @interface CGConnectionController () <MCNearbyServiceAdvertiserDelegate, MCNearbyServiceBrowserDelegate>
 
@@ -52,8 +54,8 @@
     if (self) {
         _online = YES;
         _autoAddLocalConnections = NO;
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reachabilityDidNotifyOnline) name:kReachabilityOnlineNotification object:nil];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reachabilityDidNotifyOffline) name:kReachabilityOfflineNotification object:nil];
+//        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reachabilityDidNotifyOnline) name:kCGReachabilityOnlineNotification object:nil];
+//        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reachabilityDidNotifyOffline) name:kCGReachabilityOfflineNotification object:nil];
     }
     return self;
 }
@@ -66,11 +68,34 @@
     _priorityConnection.dataDelegate = self;
 }
 
+- (NSArray *)registeredClasses
+{
+    if (_priorityConnection) {
+        return [_priorityConnection registeredClasses];
+    } else {
+#warning Throw exception
+        return nil;
+    }
+}
 
+- (void)registerClass:(NSString *)className withURLParameter:(NSString *)parameter
+{
+    if (_priorityConnection) {
+        [_priorityConnection registerClass:className withURLParameter:parameter];
+    } else {
+#warning Throw exception
+    }
+}
 
-#warning Add reachability and other authentication checks
-
-
+- (NSString *)urlForRegisteredClass:(NSString *)className
+{
+    if (_priorityConnection) {
+        return [_priorityConnection urlForRegisteredClass:className];
+    } else {
+#warning Throw exception
+        return nil;
+    }
+}
 
 #pragma mark - Server Connection Helper Methods
 
@@ -163,21 +188,6 @@
     @throw [NSException exceptionWithName:NSInternalInconsistencyException reason:[NSString stringWithFormat:@"CGConnectionController must have a connection"] userInfo:nil];
 }
 
-- (void)checkForAuthentication
-{
-    if (_priorityConnection) {
-        [_priorityConnection checkForAuthentication];
-        
-        if ([_priorityConnection authenticated]) {
-            //            return YES;
-        } else {
-            
-        }
-    }
-    
-    //    return YES;
-}
-
 - (void)loginWithUsername:(NSString *)username andPassword:(NSString *)password
 {
     [self loginWithUsername:username andPassword:password withCompletion:nil];
@@ -187,7 +197,54 @@
 {
     if (!_priorityConnection) return;
     if (!username || !password) return;
-    [[self priorityConnection] loginWithUsername:username andPassword:password withCompletion:completion];
+#ifdef DEBUG_SYNC
+    if (_online) {
+#else
+    if (_online) {
+#endif
+        KeychainItemWrapper *keychainItem = [[KeychainItemWrapper alloc] initWithIdentifier:@"REPOKeyChainLoginKey" accessGroup:nil];
+        [keychainItem setObject:username forKey:(__bridge id)kSecAttrAccount];
+        [keychainItem setObject:password forKey:(__bridge id)kSecValueData];
+    
+        [[self priorityConnection] loginWithUsername:username andPassword:password withCompletion:completion];
+    } else {
+        KeychainItemWrapper *keychainItem = [[KeychainItemWrapper alloc] initWithIdentifier:@"REPOKeyChainLoginKey" accessGroup:nil];
+        NSString * user = [keychainItem objectForKey:(__bridge id)(kSecAttrAccount)];
+        id pass = [keychainItem objectForKey:(__bridge id)(kSecValueData)];
+        if (user && pass) {
+            id val = password;
+            val = [(NSString *)val dataUsingEncoding:NSUTF8StringEncoding];
+            if ([val isEqual:pass]) {
+                if (completion) {
+                    completion(nil);
+                } else {
+                    if (self.authDelegateRespondsTo.didConnectWithUsername)
+                        [self.authDelegate connection:[self priorityConnection] didConnectWithUsername:username];
+                }
+            } else {
+                NSMutableDictionary * userInfo = [NSMutableDictionary dictionary];
+                [userInfo setObject:[NSString stringWithFormat:@"Password Is Incorrect"] forKey:NSLocalizedDescriptionKey];
+                NSError *authError = [[NSError alloc] initWithDomain:@"CGAuthError" code:401 userInfo:userInfo];
+                if (completion) {
+                    completion(authError);
+                } else {
+#warning fix all connection self calls to priorityConnection
+                    if (self.authDelegateRespondsTo.didFailToAuthenticateWithError)
+                        [self.authDelegate connection:self didFailToAuthenticateWithError:authError];
+                }
+            }
+        } else {
+            NSMutableDictionary * userInfo = [NSMutableDictionary dictionary];
+            [userInfo setObject:[NSString stringWithFormat:@"Password Data Not Saved"] forKey:NSLocalizedDescriptionKey];
+            NSError *authError = [[NSError alloc] initWithDomain:@"CGAuthError" code:402 userInfo:userInfo];
+            if (completion) {
+                completion(authError);
+            } else {
+                if (self.authDelegateRespondsTo.didFailToAuthenticateWithError)
+                    [self.authDelegate connection:self didFailToAuthenticateWithError:authError];
+            }
+        }
+    }
 }
 
 #pragma mark - CGConnection Method Protocol Return Overrides
@@ -290,101 +347,6 @@
     [[self priorityConnection] requestCountOfObjectsWithType:type andCompletion:completion];
 }
 
-//#pragma mark - CGAuthConnection Protocol
-//
-//- (void)connection:(CGConnection *)connection didConnectWithUserInfo:(NSDictionary *)userInfo
-//{
-//    if (self.authDelegateRespondsTo.didConnectWithUserInfo)
-//        [self.authDelegate connection:connection didConnectWithUserInfo:userInfo];
-//}
-//
-//- (void)connection:(CGConnection *)connection didFailToConnectWithError:(NSError *)error
-//{
-//    NSLog(@"Error: %@", error);
-//    if (self.authDelegateRespondsTo.didFailToConnectWithError)
-//        [self.authDelegate connection:connection didFailToConnectWithError:error];
-//}
-//
-//- (void)connection:(CGConnection *)connection didFailToAuthenticateWithError:(NSError *)error
-//{
-//    if (self.authDelegateRespondsTo.didFailToAuthenticateWithError)
-//        [self.authDelegate connection:connection didFailToAuthenticateWithError:error];
-//}
-//
-//#pragma mark - CGDataConnection Protocol
-//
-//- (void)connection:(CGConnection *)connection didSyncObjectWithId:(NSString *)objectId
-//{
-//    if (self.dataDelegateRespondsTo.didSyncObject)
-//        [self.dataDelegate connection:connection didSyncObjectWithId:objectId];
-//}
-//
-//- (void)connection:(CGConnection *)connection didFailToSyncObjectWithId:(NSString *)objectId withError:(NSError *)error
-//{
-//    if (self.dataDelegateRespondsTo.didFailToSyncObjectWithError)
-//        [self.dataDelegate connection:connection didFailToSyncObjectWithId:objectId withError:error];
-//}
-//
-//- (void)connection:(CGConnection *)connection didDeleteObjectWithId:(NSString *)objectId
-//{
-//    if (self.dataDelegateRespondsTo.didDeleteObject)
-//        [self.dataDelegate connection:connection didSyncObjectWithId:objectId];
-//}
-//
-//- (void)connection:(CGConnection *)connection didFailToDeleteObjectWithId:(NSString *)objectId withError:(NSError *)error
-//{
-//    if (self.dataDelegateRespondsTo.didFailToDeleteObjectWithError)
-//        [self.dataDelegate connection:connection didFailToDeleteObjectWithId:objectId withError:error];
-//}
-//
-//- (void)connection:(CGConnection *)connection didReceiveObject:(NSDictionary *)object
-//{
-//    if (self.dataDelegateRespondsTo.didReceiveObject)
-//        [self.dataDelegate connection:connection didReceiveObject:object];
-//}
-//
-//- (void)connection:(CGConnection *)connection didFailToReceiveObjectWithId:(NSString *)objectId withError:(NSError *)error
-//{
-//    if (self.dataDelegateRespondsTo.didFailToReceiveObjectWithError)
-//        [self.dataDelegate connection:connection didFailToReceiveObjectWithId:objectId withError:error];
-//}
-//
-//- (void)connection:(CGConnection *)connection didReceiveObjects:(NSArray *)objects
-//{
-//    if (self.dataDelegateRespondsTo.didReceiveObjects)
-//        [self.dataDelegate connection:connection didReceiveObjects:objects];
-//}
-//
-//- (void)connection:(CGConnection *)connection didFailToReceiveObjectsWithError:(NSError *)error
-//{
-//    if (self.dataDelegateRespondsTo.didFailToReceiveObjectsWithError)
-//        [self.dataDelegate connection:connection didFailToReceiveObjectsWithError:error];
-//}
-//
-//- (void)connection:(CGConnection *)connection didReceiveStatusForType:(NSDictionary *)status
-//{
-//    if (self.dataDelegateRespondsTo.didReceiveStatusForType)
-//        [self.dataDelegate connection:connection didReceiveStatusForType:status];
-//}
-//
-//- (void)connection:(CGConnection *)connection didFailToReceiveStatusForObjectType:(NSString *)type withError:(NSError *)error
-//{
-//    if (self.dataDelegateRespondsTo.didFailToReceiveStatusForTypeWithError)
-//        [self.dataDelegate connection:connection didFailToReceiveStatusForType:type withError:error];
-//}
-//
-//- (void)connection:(CGConnection *)connection didReceiveCount:(NSUInteger)count forObjectType:(NSString *)type
-//{
-//    if (self.dataDelegateRespondsTo.didReceiveCountForObject)
-//        [self.dataDelegate connection:connection didReceiveCount:count forObjectType:type];
-//}
-//
-//- (void)connection:(CGConnection *)connection didFailToReceiveCountForObjectType:(NSString *)type withError:(NSError *)error
-//{
-//    if (self.dataDelegateRespondsTo.didFailToReceiveCountForObjectWithError)
-//        [self.dataDelegate connection:connection didFailToReceiveCountForObjectType:type withError:error];
-//}
-
 #pragma mark - Reachability Protocol
 
 - (void)reachabilityDidNotifyOnline
@@ -409,7 +371,8 @@
     if (peerIDData) {
         peerID = [NSKeyedUnarchiver unarchiveObjectWithData:peerIDData];
     } else {
-        peerID = [[MCPeerID alloc] initWithDisplayName:[[UserSecurityController sharedLogin] nick_nm]];
+#warning come up with local peerId naming convention
+        peerID = [[MCPeerID alloc] initWithDisplayName:@""]; //[[UserSecurityController sharedLogin] nick_nm]];
         peerIDData = [NSKeyedArchiver archivedDataWithRootObject:peerID];
         [defaults setObject:peerID forKey:kCGPeerIDKey];
         [defaults synchronize];

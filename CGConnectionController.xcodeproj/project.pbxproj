@@ -7,197 +7,155 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2E262AAC18FDB02D004FFFB3 /* CGParseConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E262AAB18FDB02D004FFFB3 /* CGParseConnection.m */; };
-		2E262AAF18FDB141004FFFB3 /* CGConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E262AAE18FDB141004FFFB3 /* CGConnection.m */; };
-		2E262AB218FDB4AB004FFFB3 /* CGLocalConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E262AB118FDB4AB004FFFB3 /* CGLocalConnection.m */; };
-		2E262AB518FDB4B5004FFFB3 /* CGServerConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E262AB418FDB4B5004FFFB3 /* CGServerConnection.m */; };
-		2E6FBACC18EA0902008AA837 /* CGManagedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E6FBACB18EA0902008AA837 /* CGManagedObject.m */; };
-		2E6FBAD118EA095F008AA837 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E6FBAD018EA095F008AA837 /* Parse.framework */; };
-		2ECA4C8A18EA078200D0EB46 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2ECA4C8918EA078200D0EB46 /* Foundation.framework */; };
-		2ECA4C8F18EA078200D0EB46 /* CGConnectionController.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2ECA4C8E18EA078200D0EB46 /* CGConnectionController.h */; };
-		2ECA4C9118EA078200D0EB46 /* CGConnectionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2ECA4C9018EA078200D0EB46 /* CGConnectionController.m */; };
-		2ECA4C9818EA078200D0EB46 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2ECA4C9718EA078200D0EB46 /* XCTest.framework */; };
-		2ECA4C9918EA078200D0EB46 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2ECA4C8918EA078200D0EB46 /* Foundation.framework */; };
-		2ECA4C9B18EA078200D0EB46 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2ECA4C9A18EA078200D0EB46 /* UIKit.framework */; };
-		2ECA4C9E18EA078200D0EB46 /* libCGConnectionController.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2ECA4C8618EA078200D0EB46 /* libCGConnectionController.a */; };
-		2ECA4CA418EA078200D0EB46 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2ECA4CA218EA078200D0EB46 /* InfoPlist.strings */; };
-		2ECA4CA618EA078200D0EB46 /* CGConnectionControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2ECA4CA518EA078200D0EB46 /* CGConnectionControllerTests.m */; };
+		D38A455819D34F8C007AD9DC /* CGConnectionController.h in Headers */ = {isa = PBXBuildFile; fileRef = D38A455719D34F8C007AD9DC /* CGConnectionController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D38A456219D34F8D007AD9DC /* CGConnectionControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D38A456119D34F8D007AD9DC /* CGConnectionControllerTests.m */; };
+		D38A457719D3506B007AD9DC /* CGConnection.h in Headers */ = {isa = PBXBuildFile; fileRef = D38A456B19D3506B007AD9DC /* CGConnection.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D38A457819D3506B007AD9DC /* CGConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = D38A456C19D3506B007AD9DC /* CGConnection.m */; };
+		D38A457919D3506B007AD9DC /* CGConnectionController.m in Sources */ = {isa = PBXBuildFile; fileRef = D38A456D19D3506B007AD9DC /* CGConnectionController.m */; };
+		D38A457A19D3506B007AD9DC /* CGLocalConnection.h in Headers */ = {isa = PBXBuildFile; fileRef = D38A456E19D3506B007AD9DC /* CGLocalConnection.h */; };
+		D38A457B19D3506B007AD9DC /* CGLocalConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = D38A456F19D3506B007AD9DC /* CGLocalConnection.m */; };
+		D38A457C19D3506B007AD9DC /* CGReachability.h in Headers */ = {isa = PBXBuildFile; fileRef = D38A457019D3506B007AD9DC /* CGReachability.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D38A457D19D3506B007AD9DC /* CGReachability.m in Sources */ = {isa = PBXBuildFile; fileRef = D38A457119D3506B007AD9DC /* CGReachability.m */; };
+		D38A457E19D3506B007AD9DC /* CGServerConnection.h in Headers */ = {isa = PBXBuildFile; fileRef = D38A457219D3506B007AD9DC /* CGServerConnection.h */; };
+		D38A457F19D3506B007AD9DC /* CGServerConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = D38A457319D3506B007AD9DC /* CGServerConnection.m */; };
+		D38A458119D3506B007AD9DC /* KeychainItemWrapper.h in Headers */ = {isa = PBXBuildFile; fileRef = D38A457519D3506B007AD9DC /* KeychainItemWrapper.h */; };
+		D38A458219D3506B007AD9DC /* KeychainItemWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = D38A457619D3506B007AD9DC /* KeychainItemWrapper.m */; };
+		D38A458519D351AD007AD9DC /* CGConnectionDefines.h in Headers */ = {isa = PBXBuildFile; fileRef = D38A458419D351A7007AD9DC /* CGConnectionDefines.h */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		2ECA4C9C18EA078200D0EB46 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 2ECA4C7E18EA078200D0EB46 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 2ECA4C8518EA078200D0EB46;
-			remoteInfo = CGConnectionController;
-		};
-/* End PBXContainerItemProxy section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		2ECA4C8418EA078200D0EB46 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "include/$(PRODUCT_NAME)";
-			dstSubfolderSpec = 16;
-			files = (
-				2ECA4C8F18EA078200D0EB46 /* CGConnectionController.h in CopyFiles */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
-
 /* Begin PBXFileReference section */
-		2E262AAA18FDB02D004FFFB3 /* CGParseConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGParseConnection.h; sourceTree = "<group>"; };
-		2E262AAB18FDB02D004FFFB3 /* CGParseConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CGParseConnection.m; sourceTree = "<group>"; };
-		2E262AAD18FDB141004FFFB3 /* CGConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGConnection.h; sourceTree = "<group>"; };
-		2E262AAE18FDB141004FFFB3 /* CGConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CGConnection.m; sourceTree = "<group>"; };
-		2E262AB018FDB4AB004FFFB3 /* CGLocalConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGLocalConnection.h; sourceTree = "<group>"; };
-		2E262AB118FDB4AB004FFFB3 /* CGLocalConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CGLocalConnection.m; sourceTree = "<group>"; };
-		2E262AB318FDB4B5004FFFB3 /* CGServerConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGServerConnection.h; sourceTree = "<group>"; };
-		2E262AB418FDB4B5004FFFB3 /* CGServerConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CGServerConnection.m; sourceTree = "<group>"; };
-		2E6FBACA18EA0902008AA837 /* CGManagedObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGManagedObject.h; sourceTree = "<group>"; };
-		2E6FBACB18EA0902008AA837 /* CGManagedObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CGManagedObject.m; sourceTree = "<group>"; };
-		2E6FBAD018EA095F008AA837 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = ../../../../Documents/FacebookSDK/Parse.framework; sourceTree = "<group>"; };
-		2ECA4C8618EA078200D0EB46 /* libCGConnectionController.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libCGConnectionController.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		2ECA4C8918EA078200D0EB46 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		2ECA4C8D18EA078200D0EB46 /* CGConnectionController-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CGConnectionController-Prefix.pch"; sourceTree = "<group>"; };
-		2ECA4C8E18EA078200D0EB46 /* CGConnectionController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CGConnectionController.h; sourceTree = "<group>"; };
-		2ECA4C9018EA078200D0EB46 /* CGConnectionController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CGConnectionController.m; sourceTree = "<group>"; };
-		2ECA4C9618EA078200D0EB46 /* CGConnectionControllerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CGConnectionControllerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		2ECA4C9718EA078200D0EB46 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		2ECA4C9A18EA078200D0EB46 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
-		2ECA4CA118EA078200D0EB46 /* CGConnectionControllerTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CGConnectionControllerTests-Info.plist"; sourceTree = "<group>"; };
-		2ECA4CA318EA078200D0EB46 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		2ECA4CA518EA078200D0EB46 /* CGConnectionControllerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CGConnectionControllerTests.m; sourceTree = "<group>"; };
+		D38A455219D34F8C007AD9DC /* CGConnectionController.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CGConnectionController.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D38A455619D34F8C007AD9DC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D38A455719D34F8C007AD9DC /* CGConnectionController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CGConnectionController.h; sourceTree = "<group>"; };
+		D38A455D19D34F8D007AD9DC /* CGConnectionControllerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CGConnectionControllerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D38A456019D34F8D007AD9DC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D38A456119D34F8D007AD9DC /* CGConnectionControllerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CGConnectionControllerTests.m; sourceTree = "<group>"; };
+		D38A456B19D3506B007AD9DC /* CGConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGConnection.h; sourceTree = "<group>"; };
+		D38A456C19D3506B007AD9DC /* CGConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CGConnection.m; sourceTree = "<group>"; };
+		D38A456D19D3506B007AD9DC /* CGConnectionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CGConnectionController.m; sourceTree = "<group>"; };
+		D38A456E19D3506B007AD9DC /* CGLocalConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGLocalConnection.h; sourceTree = "<group>"; };
+		D38A456F19D3506B007AD9DC /* CGLocalConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CGLocalConnection.m; sourceTree = "<group>"; };
+		D38A457019D3506B007AD9DC /* CGReachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGReachability.h; sourceTree = "<group>"; };
+		D38A457119D3506B007AD9DC /* CGReachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CGReachability.m; sourceTree = "<group>"; };
+		D38A457219D3506B007AD9DC /* CGServerConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGServerConnection.h; sourceTree = "<group>"; };
+		D38A457319D3506B007AD9DC /* CGServerConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CGServerConnection.m; sourceTree = "<group>"; };
+		D38A457519D3506B007AD9DC /* KeychainItemWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeychainItemWrapper.h; sourceTree = "<group>"; };
+		D38A457619D3506B007AD9DC /* KeychainItemWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeychainItemWrapper.m; sourceTree = "<group>"; };
+		D38A458319D3518F007AD9DC /* CGConnection-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CGConnection-Prefix.pch"; sourceTree = "<group>"; };
+		D38A458419D351A7007AD9DC /* CGConnectionDefines.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CGConnectionDefines.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		2ECA4C8318EA078200D0EB46 /* Frameworks */ = {
+		D38A454E19D34F8C007AD9DC /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2E6FBAD118EA095F008AA837 /* Parse.framework in Frameworks */,
-				2ECA4C8A18EA078200D0EB46 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		2ECA4C9318EA078200D0EB46 /* Frameworks */ = {
+		D38A455A19D34F8D007AD9DC /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2ECA4C9818EA078200D0EB46 /* XCTest.framework in Frameworks */,
-				2ECA4C9B18EA078200D0EB46 /* UIKit.framework in Frameworks */,
-				2ECA4C9918EA078200D0EB46 /* Foundation.framework in Frameworks */,
-				2ECA4C9E18EA078200D0EB46 /* libCGConnectionController.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		2E262AB618FDB4C0004FFFB3 /* CGConnectionSubclasses */ = {
+		D38A454819D34F8C007AD9DC = {
 			isa = PBXGroup;
 			children = (
-				2E262AB018FDB4AB004FFFB3 /* CGLocalConnection.h */,
-				2E262AB118FDB4AB004FFFB3 /* CGLocalConnection.m */,
-				2E262AB318FDB4B5004FFFB3 /* CGServerConnection.h */,
-				2E262AB418FDB4B5004FFFB3 /* CGServerConnection.m */,
-				2E262AAA18FDB02D004FFFB3 /* CGParseConnection.h */,
-				2E262AAB18FDB02D004FFFB3 /* CGParseConnection.m */,
-			);
-			name = CGConnectionSubclasses;
-			sourceTree = "<group>";
-		};
-		2E262AB718FDB4CC004FFFB3 /* CGConnection */ = {
-			isa = PBXGroup;
-			children = (
-				2E262AAD18FDB141004FFFB3 /* CGConnection.h */,
-				2E262AAE18FDB141004FFFB3 /* CGConnection.m */,
-				2E262AB618FDB4C0004FFFB3 /* CGConnectionSubclasses */,
-			);
-			name = CGConnection;
-			sourceTree = "<group>";
-		};
-		2ECA4C7D18EA078200D0EB46 = {
-			isa = PBXGroup;
-			children = (
-				2ECA4C8B18EA078200D0EB46 /* CGConnectionController */,
-				2ECA4C9F18EA078200D0EB46 /* CGConnectionControllerTests */,
-				2ECA4C8818EA078200D0EB46 /* Frameworks */,
-				2ECA4C8718EA078200D0EB46 /* Products */,
+				D38A455419D34F8C007AD9DC /* CGConnectionController */,
+				D38A455E19D34F8D007AD9DC /* CGConnectionControllerTests */,
+				D38A455319D34F8C007AD9DC /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		2ECA4C8718EA078200D0EB46 /* Products */ = {
+		D38A455319D34F8C007AD9DC /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				2ECA4C8618EA078200D0EB46 /* libCGConnectionController.a */,
-				2ECA4C9618EA078200D0EB46 /* CGConnectionControllerTests.xctest */,
+				D38A455219D34F8C007AD9DC /* CGConnectionController.framework */,
+				D38A455D19D34F8D007AD9DC /* CGConnectionControllerTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		2ECA4C8818EA078200D0EB46 /* Frameworks */ = {
+		D38A455419D34F8C007AD9DC /* CGConnectionController */ = {
 			isa = PBXGroup;
 			children = (
-				2E6FBAD018EA095F008AA837 /* Parse.framework */,
-				2ECA4C8918EA078200D0EB46 /* Foundation.framework */,
-				2ECA4C9718EA078200D0EB46 /* XCTest.framework */,
-				2ECA4C9A18EA078200D0EB46 /* UIKit.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		2ECA4C8B18EA078200D0EB46 /* CGConnectionController */ = {
-			isa = PBXGroup;
-			children = (
-				2ECA4C8E18EA078200D0EB46 /* CGConnectionController.h */,
-				2ECA4C9018EA078200D0EB46 /* CGConnectionController.m */,
-				2E6FBACA18EA0902008AA837 /* CGManagedObject.h */,
-				2E6FBACB18EA0902008AA837 /* CGManagedObject.m */,
-				2E262AB718FDB4CC004FFFB3 /* CGConnection */,
-				2ECA4C8C18EA078200D0EB46 /* Supporting Files */,
+				D38A455719D34F8C007AD9DC /* CGConnectionController.h */,
+				D38A456D19D3506B007AD9DC /* CGConnectionController.m */,
+				D38A456B19D3506B007AD9DC /* CGConnection.h */,
+				D38A456C19D3506B007AD9DC /* CGConnection.m */,
+				D38A456E19D3506B007AD9DC /* CGLocalConnection.h */,
+				D38A456F19D3506B007AD9DC /* CGLocalConnection.m */,
+				D38A457219D3506B007AD9DC /* CGServerConnection.h */,
+				D38A457319D3506B007AD9DC /* CGServerConnection.m */,
+				D38A457019D3506B007AD9DC /* CGReachability.h */,
+				D38A457119D3506B007AD9DC /* CGReachability.m */,
+				D38A457519D3506B007AD9DC /* KeychainItemWrapper.h */,
+				D38A457619D3506B007AD9DC /* KeychainItemWrapper.m */,
+				D38A455519D34F8C007AD9DC /* Supporting Files */,
 			);
 			path = CGConnectionController;
 			sourceTree = "<group>";
 		};
-		2ECA4C8C18EA078200D0EB46 /* Supporting Files */ = {
+		D38A455519D34F8C007AD9DC /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				2ECA4C8D18EA078200D0EB46 /* CGConnectionController-Prefix.pch */,
+				D38A455619D34F8C007AD9DC /* Info.plist */,
+				D38A458319D3518F007AD9DC /* CGConnection-Prefix.pch */,
+				D38A458419D351A7007AD9DC /* CGConnectionDefines.h */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		2ECA4C9F18EA078200D0EB46 /* CGConnectionControllerTests */ = {
+		D38A455E19D34F8D007AD9DC /* CGConnectionControllerTests */ = {
 			isa = PBXGroup;
 			children = (
-				2ECA4CA518EA078200D0EB46 /* CGConnectionControllerTests.m */,
-				2ECA4CA018EA078200D0EB46 /* Supporting Files */,
+				D38A456119D34F8D007AD9DC /* CGConnectionControllerTests.m */,
+				D38A455F19D34F8D007AD9DC /* Supporting Files */,
 			);
 			path = CGConnectionControllerTests;
 			sourceTree = "<group>";
 		};
-		2ECA4CA018EA078200D0EB46 /* Supporting Files */ = {
+		D38A455F19D34F8D007AD9DC /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				2ECA4CA118EA078200D0EB46 /* CGConnectionControllerTests-Info.plist */,
-				2ECA4CA218EA078200D0EB46 /* InfoPlist.strings */,
+				D38A456019D34F8D007AD9DC /* Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
+/* Begin PBXHeadersBuildPhase section */
+		D38A454F19D34F8C007AD9DC /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D38A458519D351AD007AD9DC /* CGConnectionDefines.h in Headers */,
+				D38A457A19D3506B007AD9DC /* CGLocalConnection.h in Headers */,
+				D38A457E19D3506B007AD9DC /* CGServerConnection.h in Headers */,
+				D38A457C19D3506B007AD9DC /* CGReachability.h in Headers */,
+				D38A457719D3506B007AD9DC /* CGConnection.h in Headers */,
+				D38A455819D34F8C007AD9DC /* CGConnectionController.h in Headers */,
+				D38A458119D3506B007AD9DC /* KeychainItemWrapper.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
 /* Begin PBXNativeTarget section */
-		2ECA4C8518EA078200D0EB46 /* CGConnectionController */ = {
+		D38A455119D34F8C007AD9DC /* CGConnectionController */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2ECA4CA918EA078200D0EB46 /* Build configuration list for PBXNativeTarget "CGConnectionController" */;
+			buildConfigurationList = D38A456519D34F8D007AD9DC /* Build configuration list for PBXNativeTarget "CGConnectionController" */;
 			buildPhases = (
-				2ECA4C8218EA078200D0EB46 /* Sources */,
-				2ECA4C8318EA078200D0EB46 /* Frameworks */,
-				2ECA4C8418EA078200D0EB46 /* CopyFiles */,
+				D38A454D19D34F8C007AD9DC /* Sources */,
+				D38A454E19D34F8C007AD9DC /* Frameworks */,
+				D38A454F19D34F8C007AD9DC /* Headers */,
+				D38A455019D34F8C007AD9DC /* Resources */,
 			);
 			buildRules = (
 			);
@@ -205,110 +163,104 @@
 			);
 			name = CGConnectionController;
 			productName = CGConnectionController;
-			productReference = 2ECA4C8618EA078200D0EB46 /* libCGConnectionController.a */;
-			productType = "com.apple.product-type.library.static";
+			productReference = D38A455219D34F8C007AD9DC /* CGConnectionController.framework */;
+			productType = "com.apple.product-type.framework";
 		};
-		2ECA4C9518EA078200D0EB46 /* CGConnectionControllerTests */ = {
+		D38A455C19D34F8D007AD9DC /* CGConnectionControllerTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2ECA4CAC18EA078200D0EB46 /* Build configuration list for PBXNativeTarget "CGConnectionControllerTests" */;
+			buildConfigurationList = D38A456819D34F8D007AD9DC /* Build configuration list for PBXNativeTarget "CGConnectionControllerTests" */;
 			buildPhases = (
-				2ECA4C9218EA078200D0EB46 /* Sources */,
-				2ECA4C9318EA078200D0EB46 /* Frameworks */,
-				2ECA4C9418EA078200D0EB46 /* Resources */,
+				D38A455919D34F8D007AD9DC /* Sources */,
+				D38A455A19D34F8D007AD9DC /* Frameworks */,
+				D38A455B19D34F8D007AD9DC /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				2ECA4C9D18EA078200D0EB46 /* PBXTargetDependency */,
 			);
 			name = CGConnectionControllerTests;
 			productName = CGConnectionControllerTests;
-			productReference = 2ECA4C9618EA078200D0EB46 /* CGConnectionControllerTests.xctest */;
+			productReference = D38A455D19D34F8D007AD9DC /* CGConnectionControllerTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		2ECA4C7E18EA078200D0EB46 /* Project object */ = {
+		D38A454919D34F8C007AD9DC /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0510;
+				LastUpgradeCheck = 0600;
 				ORGANIZATIONNAME = "Revision Works, LLC";
+				TargetAttributes = {
+					D38A455119D34F8C007AD9DC = {
+						CreatedOnToolsVersion = 6.0;
+					};
+					D38A455C19D34F8D007AD9DC = {
+						CreatedOnToolsVersion = 6.0;
+					};
+				};
 			};
-			buildConfigurationList = 2ECA4C8118EA078200D0EB46 /* Build configuration list for PBXProject "CGConnectionController" */;
+			buildConfigurationList = D38A454C19D34F8C007AD9DC /* Build configuration list for PBXProject "CGConnectionController" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 			);
-			mainGroup = 2ECA4C7D18EA078200D0EB46;
-			productRefGroup = 2ECA4C8718EA078200D0EB46 /* Products */;
+			mainGroup = D38A454819D34F8C007AD9DC;
+			productRefGroup = D38A455319D34F8C007AD9DC /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				2ECA4C8518EA078200D0EB46 /* CGConnectionController */,
-				2ECA4C9518EA078200D0EB46 /* CGConnectionControllerTests */,
+				D38A455119D34F8C007AD9DC /* CGConnectionController */,
+				D38A455C19D34F8D007AD9DC /* CGConnectionControllerTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		2ECA4C9418EA078200D0EB46 /* Resources */ = {
+		D38A455019D34F8C007AD9DC /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2ECA4CA418EA078200D0EB46 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D38A455B19D34F8D007AD9DC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		2ECA4C8218EA078200D0EB46 /* Sources */ = {
+		D38A454D19D34F8C007AD9DC /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2E262AB518FDB4B5004FFFB3 /* CGServerConnection.m in Sources */,
-				2E262AB218FDB4AB004FFFB3 /* CGLocalConnection.m in Sources */,
-				2E6FBACC18EA0902008AA837 /* CGManagedObject.m in Sources */,
-				2E262AAC18FDB02D004FFFB3 /* CGParseConnection.m in Sources */,
-				2ECA4C9118EA078200D0EB46 /* CGConnectionController.m in Sources */,
-				2E262AAF18FDB141004FFFB3 /* CGConnection.m in Sources */,
+				D38A457B19D3506B007AD9DC /* CGLocalConnection.m in Sources */,
+				D38A457F19D3506B007AD9DC /* CGServerConnection.m in Sources */,
+				D38A458219D3506B007AD9DC /* KeychainItemWrapper.m in Sources */,
+				D38A457819D3506B007AD9DC /* CGConnection.m in Sources */,
+				D38A457D19D3506B007AD9DC /* CGReachability.m in Sources */,
+				D38A457919D3506B007AD9DC /* CGConnectionController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		2ECA4C9218EA078200D0EB46 /* Sources */ = {
+		D38A455919D34F8D007AD9DC /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2ECA4CA618EA078200D0EB46 /* CGConnectionControllerTests.m in Sources */,
+				D38A456219D34F8D007AD9DC /* CGConnectionControllerTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
-/* Begin PBXTargetDependency section */
-		2ECA4C9D18EA078200D0EB46 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 2ECA4C8518EA078200D0EB46 /* CGConnectionController */;
-			targetProxy = 2ECA4C9C18EA078200D0EB46 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		2ECA4CA218EA078200D0EB46 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				2ECA4CA318EA078200D0EB46 /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
-
 /* Begin XCBuildConfiguration section */
-		2ECA4CA718EA078200D0EB46 /* Debug */ = {
+		D38A456319D34F8D007AD9DC /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -323,8 +275,12 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -339,13 +295,17 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
 			};
 			name = Debug;
 		};
-		2ECA4CA818EA078200D0EB46 /* Release */ = {
+		D38A456419D34F8D007AD9DC /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -360,9 +320,13 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
+				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
@@ -370,125 +334,109 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
 			};
 			name = Release;
 		};
-		2ECA4CAA18EA078200D0EB46 /* Debug */ = {
+		D38A456619D34F8D007AD9DC /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				DSTROOT = /tmp/CGConnectionController.dst;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					/Users/nbvikingsidiot001/Documents/FacebookSDK,
-				);
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "CGConnectionController/CGConnectionController-Prefix.pch";
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
-					"../**",
-				);
-				ONLY_ACTIVE_ARCH = NO;
-				OTHER_LDFLAGS = "-ObjC";
+				GCC_PREFIX_HEADER = "CGConnectionController/CGConnection-Prefix.pch";
+				INFOPLIST_FILE = CGConnectionController/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PUBLIC_HEADERS_FOLDER_PATH = "include/$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
 			name = Debug;
 		};
-		2ECA4CAB18EA078200D0EB46 /* Release */ = {
+		D38A456719D34F8D007AD9DC /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				DSTROOT = /tmp/CGConnectionController.dst;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					/Users/nbvikingsidiot001/Documents/FacebookSDK,
-				);
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "CGConnectionController/CGConnectionController-Prefix.pch";
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
-					"../**",
-				);
-				ONLY_ACTIVE_ARCH = NO;
-				OTHER_LDFLAGS = "-ObjC";
+				GCC_PREFIX_HEADER = "CGConnectionController/CGConnection-Prefix.pch";
+				INFOPLIST_FILE = CGConnectionController/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PUBLIC_HEADERS_FOLDER_PATH = "include/$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
 			name = Release;
 		};
-		2ECA4CAD18EA078200D0EB46 /* Debug */ = {
+		D38A456919D34F8D007AD9DC /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
 				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "CGConnectionController/CGConnectionController-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = "CGConnectionControllerTests/CGConnectionControllerTests-Info.plist";
+				INFOPLIST_FILE = CGConnectionControllerTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				WRAPPER_EXTENSION = xctest;
 			};
 			name = Debug;
 		};
-		2ECA4CAE18EA078200D0EB46 /* Release */ = {
+		D38A456A19D34F8D007AD9DC /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
 				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "CGConnectionController/CGConnectionController-Prefix.pch";
-				INFOPLIST_FILE = "CGConnectionControllerTests/CGConnectionControllerTests-Info.plist";
+				INFOPLIST_FILE = CGConnectionControllerTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				WRAPPER_EXTENSION = xctest;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		2ECA4C8118EA078200D0EB46 /* Build configuration list for PBXProject "CGConnectionController" */ = {
+		D38A454C19D34F8C007AD9DC /* Build configuration list for PBXProject "CGConnectionController" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				2ECA4CA718EA078200D0EB46 /* Debug */,
-				2ECA4CA818EA078200D0EB46 /* Release */,
+				D38A456319D34F8D007AD9DC /* Debug */,
+				D38A456419D34F8D007AD9DC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		2ECA4CA918EA078200D0EB46 /* Build configuration list for PBXNativeTarget "CGConnectionController" */ = {
+		D38A456519D34F8D007AD9DC /* Build configuration list for PBXNativeTarget "CGConnectionController" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				2ECA4CAA18EA078200D0EB46 /* Debug */,
-				2ECA4CAB18EA078200D0EB46 /* Release */,
+				D38A456619D34F8D007AD9DC /* Debug */,
+				D38A456719D34F8D007AD9DC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
 		};
-		2ECA4CAC18EA078200D0EB46 /* Build configuration list for PBXNativeTarget "CGConnectionControllerTests" */ = {
+		D38A456819D34F8D007AD9DC /* Build configuration list for PBXNativeTarget "CGConnectionControllerTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				2ECA4CAD18EA078200D0EB46 /* Debug */,
-				2ECA4CAE18EA078200D0EB46 /* Release */,
+				D38A456919D34F8D007AD9DC /* Debug */,
+				D38A456A19D34F8D007AD9DC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 2ECA4C7E18EA078200D0EB46 /* Project object */;
+	rootObject = D38A454919D34F8C007AD9DC /* Project object */;
 }

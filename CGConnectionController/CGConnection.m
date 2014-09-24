@@ -24,6 +24,7 @@
 {
     _authDelegate = authDelegate;
     authDelegateRespondsTo.didConnectWithUserInfo = [authDelegate respondsToSelector:@selector(connection:didConnectWithUserInfo:)];
+    authDelegateRespondsTo.didConnectWithUsername = [authDelegate respondsToSelector:@selector(connection:didConnectWithUsername:)];
     authDelegateRespondsTo.didFailToConnectWithError = [authDelegate respondsToSelector:@selector(connection:didFailToConnectWithError:)];
     authDelegateRespondsTo.didFailToAuthenticateWithError = [authDelegate respondsToSelector:@selector(connection:didFailToAuthenticateWithError:)];
 }
@@ -137,9 +138,14 @@
         [self.authDelegate connection:connection didConnectWithUserInfo:userInfo];
 }
 
+- (void)connection:(CGConnection *)connection didConnectWithUsername:(NSString *)username
+{
+    if (self.authDelegateRespondsTo.didConnectWithUsername)
+        [self.authDelegate connection:connection didConnectWithUsername:username];
+}
+
 - (void)connection:(CGConnection *)connection didFailToConnectWithError:(NSError *)error
 {
-    NSLog(@"Error: %@", error);
     if (self.authDelegateRespondsTo.didFailToConnectWithError)
         [self.authDelegate connection:connection didFailToConnectWithError:error];
 }
