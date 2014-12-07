@@ -2,7 +2,7 @@
 //  CGConnectionControllerTests.m
 //  CGConnectionControllerTests
 //
-//  Created by Charles Gorectke on 9/24/14.
+//  Created by Charles Gorectke on 11/12/14.
 //  Copyright (c) 2014 Revision Works, LLC. All rights reserved.
 //
 

@@ -10,6 +10,7 @@
 #import <Foundation/Foundation.h>
 #import <CGConnectionController/CGConnection.h>
 #import <CGConnectionController/CGReachability.h>
+#import <CGConnectionController/KeychainItemWrapper.h>
 
 //! Project version number for CGConnectionController.
 FOUNDATION_EXPORT double CGConnectionControllerVersionNumber;

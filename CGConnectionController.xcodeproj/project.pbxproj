@@ -7,53 +7,67 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		D38A455819D34F8C007AD9DC /* CGConnectionController.h in Headers */ = {isa = PBXBuildFile; fileRef = D38A455719D34F8C007AD9DC /* CGConnectionController.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D38A456219D34F8D007AD9DC /* CGConnectionControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D38A456119D34F8D007AD9DC /* CGConnectionControllerTests.m */; };
-		D38A457719D3506B007AD9DC /* CGConnection.h in Headers */ = {isa = PBXBuildFile; fileRef = D38A456B19D3506B007AD9DC /* CGConnection.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D38A457819D3506B007AD9DC /* CGConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = D38A456C19D3506B007AD9DC /* CGConnection.m */; };
-		D38A457919D3506B007AD9DC /* CGConnectionController.m in Sources */ = {isa = PBXBuildFile; fileRef = D38A456D19D3506B007AD9DC /* CGConnectionController.m */; };
-		D38A457A19D3506B007AD9DC /* CGLocalConnection.h in Headers */ = {isa = PBXBuildFile; fileRef = D38A456E19D3506B007AD9DC /* CGLocalConnection.h */; };
-		D38A457B19D3506B007AD9DC /* CGLocalConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = D38A456F19D3506B007AD9DC /* CGLocalConnection.m */; };
-		D38A457C19D3506B007AD9DC /* CGReachability.h in Headers */ = {isa = PBXBuildFile; fileRef = D38A457019D3506B007AD9DC /* CGReachability.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D38A457D19D3506B007AD9DC /* CGReachability.m in Sources */ = {isa = PBXBuildFile; fileRef = D38A457119D3506B007AD9DC /* CGReachability.m */; };
-		D38A457E19D3506B007AD9DC /* CGServerConnection.h in Headers */ = {isa = PBXBuildFile; fileRef = D38A457219D3506B007AD9DC /* CGServerConnection.h */; };
-		D38A457F19D3506B007AD9DC /* CGServerConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = D38A457319D3506B007AD9DC /* CGServerConnection.m */; };
-		D38A458119D3506B007AD9DC /* KeychainItemWrapper.h in Headers */ = {isa = PBXBuildFile; fileRef = D38A457519D3506B007AD9DC /* KeychainItemWrapper.h */; };
-		D38A458219D3506B007AD9DC /* KeychainItemWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = D38A457619D3506B007AD9DC /* KeychainItemWrapper.m */; };
-		D38A458519D351AD007AD9DC /* CGConnectionDefines.h in Headers */ = {isa = PBXBuildFile; fileRef = D38A458419D351A7007AD9DC /* CGConnectionDefines.h */; };
+		D379DD1E1A13675400A5E89C /* CGConnectionController.h in Headers */ = {isa = PBXBuildFile; fileRef = D379DD1D1A13675400A5E89C /* CGConnectionController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D379DD2B1A13675400A5E89C /* CGConnectionControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D379DD2A1A13675400A5E89C /* CGConnectionControllerTests.m */; };
+		D379DD791A1368EF00A5E89C /* CGConnection-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = D379DD6C1A1368EF00A5E89C /* CGConnection-Prefix.pch */; };
+		D379DD7A1A1368EF00A5E89C /* CGConnection.h in Headers */ = {isa = PBXBuildFile; fileRef = D379DD6D1A1368EF00A5E89C /* CGConnection.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D379DD7B1A1368EF00A5E89C /* CGConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = D379DD6E1A1368EF00A5E89C /* CGConnection.m */; };
+		D379DD7C1A1368EF00A5E89C /* CGConnectionController.m in Sources */ = {isa = PBXBuildFile; fileRef = D379DD6F1A1368EF00A5E89C /* CGConnectionController.m */; };
+		D379DD7D1A1368EF00A5E89C /* CGConnectionDefines.h in Headers */ = {isa = PBXBuildFile; fileRef = D379DD701A1368EF00A5E89C /* CGConnectionDefines.h */; };
+		D379DD7E1A1368EF00A5E89C /* CGLocalConnection.h in Headers */ = {isa = PBXBuildFile; fileRef = D379DD711A1368EF00A5E89C /* CGLocalConnection.h */; };
+		D379DD7F1A1368EF00A5E89C /* CGLocalConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = D379DD721A1368EF00A5E89C /* CGLocalConnection.m */; };
+		D379DD801A1368EF00A5E89C /* CGReachability.h in Headers */ = {isa = PBXBuildFile; fileRef = D379DD731A1368EF00A5E89C /* CGReachability.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D379DD811A1368EF00A5E89C /* CGReachability.m in Sources */ = {isa = PBXBuildFile; fileRef = D379DD741A1368EF00A5E89C /* CGReachability.m */; };
+		D379DD821A1368EF00A5E89C /* CGServerConnection.h in Headers */ = {isa = PBXBuildFile; fileRef = D379DD751A1368EF00A5E89C /* CGServerConnection.h */; };
+		D379DD831A1368EF00A5E89C /* CGServerConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = D379DD761A1368EF00A5E89C /* CGServerConnection.m */; };
+		D379DD841A1368EF00A5E89C /* KeychainItemWrapper.h in Headers */ = {isa = PBXBuildFile; fileRef = D379DD771A1368EF00A5E89C /* KeychainItemWrapper.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D379DD851A1368EF00A5E89C /* KeychainItemWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = D379DD781A1368EF00A5E89C /* KeychainItemWrapper.m */; };
+		D379DD991A136B7A00A5E89C /* CGDataController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D379DD981A136B7A00A5E89C /* CGDataController.framework */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		D379DD251A13675400A5E89C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D379DD0F1A13675400A5E89C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D379DD171A13675400A5E89C;
+			remoteInfo = CGConnectionController;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
-		D38A455219D34F8C007AD9DC /* CGConnectionController.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CGConnectionController.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		D38A455619D34F8C007AD9DC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D38A455719D34F8C007AD9DC /* CGConnectionController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CGConnectionController.h; sourceTree = "<group>"; };
-		D38A455D19D34F8D007AD9DC /* CGConnectionControllerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CGConnectionControllerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		D38A456019D34F8D007AD9DC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D38A456119D34F8D007AD9DC /* CGConnectionControllerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CGConnectionControllerTests.m; sourceTree = "<group>"; };
-		D38A456B19D3506B007AD9DC /* CGConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGConnection.h; sourceTree = "<group>"; };
-		D38A456C19D3506B007AD9DC /* CGConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CGConnection.m; sourceTree = "<group>"; };
-		D38A456D19D3506B007AD9DC /* CGConnectionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CGConnectionController.m; sourceTree = "<group>"; };
-		D38A456E19D3506B007AD9DC /* CGLocalConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGLocalConnection.h; sourceTree = "<group>"; };
-		D38A456F19D3506B007AD9DC /* CGLocalConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CGLocalConnection.m; sourceTree = "<group>"; };
-		D38A457019D3506B007AD9DC /* CGReachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGReachability.h; sourceTree = "<group>"; };
-		D38A457119D3506B007AD9DC /* CGReachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CGReachability.m; sourceTree = "<group>"; };
-		D38A457219D3506B007AD9DC /* CGServerConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGServerConnection.h; sourceTree = "<group>"; };
-		D38A457319D3506B007AD9DC /* CGServerConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CGServerConnection.m; sourceTree = "<group>"; };
-		D38A457519D3506B007AD9DC /* KeychainItemWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeychainItemWrapper.h; sourceTree = "<group>"; };
-		D38A457619D3506B007AD9DC /* KeychainItemWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeychainItemWrapper.m; sourceTree = "<group>"; };
-		D38A458319D3518F007AD9DC /* CGConnection-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CGConnection-Prefix.pch"; sourceTree = "<group>"; };
-		D38A458419D351A7007AD9DC /* CGConnectionDefines.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CGConnectionDefines.h; sourceTree = "<group>"; };
+		D379DD181A13675400A5E89C /* CGConnectionController.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CGConnectionController.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D379DD1C1A13675400A5E89C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D379DD1D1A13675400A5E89C /* CGConnectionController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CGConnectionController.h; sourceTree = "<group>"; };
+		D379DD231A13675400A5E89C /* CGConnectionControllerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CGConnectionControllerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D379DD291A13675400A5E89C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D379DD2A1A13675400A5E89C /* CGConnectionControllerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CGConnectionControllerTests.m; sourceTree = "<group>"; };
+		D379DD6C1A1368EF00A5E89C /* CGConnection-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CGConnection-Prefix.pch"; sourceTree = "<group>"; };
+		D379DD6D1A1368EF00A5E89C /* CGConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGConnection.h; sourceTree = "<group>"; };
+		D379DD6E1A1368EF00A5E89C /* CGConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CGConnection.m; sourceTree = "<group>"; };
+		D379DD6F1A1368EF00A5E89C /* CGConnectionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CGConnectionController.m; sourceTree = "<group>"; };
+		D379DD701A1368EF00A5E89C /* CGConnectionDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGConnectionDefines.h; sourceTree = "<group>"; };
+		D379DD711A1368EF00A5E89C /* CGLocalConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGLocalConnection.h; sourceTree = "<group>"; };
+		D379DD721A1368EF00A5E89C /* CGLocalConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CGLocalConnection.m; sourceTree = "<group>"; };
+		D379DD731A1368EF00A5E89C /* CGReachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGReachability.h; sourceTree = "<group>"; };
+		D379DD741A1368EF00A5E89C /* CGReachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CGReachability.m; sourceTree = "<group>"; };
+		D379DD751A1368EF00A5E89C /* CGServerConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGServerConnection.h; sourceTree = "<group>"; };
+		D379DD761A1368EF00A5E89C /* CGServerConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CGServerConnection.m; sourceTree = "<group>"; };
+		D379DD771A1368EF00A5E89C /* KeychainItemWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeychainItemWrapper.h; sourceTree = "<group>"; };
+		D379DD781A1368EF00A5E89C /* KeychainItemWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeychainItemWrapper.m; sourceTree = "<group>"; };
+		D379DD981A136B7A00A5E89C /* CGDataController.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CGDataController.framework; path = "../../../../Library/Developer/Xcode/DerivedData/REPO-grqvcnwdfcjkedgovckmxjsszsvy/Build/Products/Debug-iphoneos/CGDataController.framework"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		D38A454E19D34F8C007AD9DC /* Frameworks */ = {
+		D379DD141A13675400A5E89C /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D379DD991A136B7A00A5E89C /* CGDataController.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D38A455A19D34F8D007AD9DC /* Frameworks */ = {
+		D379DD201A13675400A5E89C /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -63,99 +77,109 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		D38A454819D34F8C007AD9DC = {
+		D379DD0E1A13675400A5E89C = {
 			isa = PBXGroup;
 			children = (
-				D38A455419D34F8C007AD9DC /* CGConnectionController */,
-				D38A455E19D34F8D007AD9DC /* CGConnectionControllerTests */,
-				D38A455319D34F8C007AD9DC /* Products */,
+				D379DD1A1A13675400A5E89C /* CGConnectionController */,
+				D379DD271A13675400A5E89C /* CGConnectionControllerTests */,
+				D379DD9F1A136DBD00A5E89C /* Frameworks */,
+				D379DD191A13675400A5E89C /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		D38A455319D34F8C007AD9DC /* Products */ = {
+		D379DD191A13675400A5E89C /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				D38A455219D34F8C007AD9DC /* CGConnectionController.framework */,
-				D38A455D19D34F8D007AD9DC /* CGConnectionControllerTests.xctest */,
+				D379DD181A13675400A5E89C /* CGConnectionController.framework */,
+				D379DD231A13675400A5E89C /* CGConnectionControllerTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		D38A455419D34F8C007AD9DC /* CGConnectionController */ = {
+		D379DD1A1A13675400A5E89C /* CGConnectionController */ = {
 			isa = PBXGroup;
 			children = (
-				D38A455719D34F8C007AD9DC /* CGConnectionController.h */,
-				D38A456D19D3506B007AD9DC /* CGConnectionController.m */,
-				D38A456B19D3506B007AD9DC /* CGConnection.h */,
-				D38A456C19D3506B007AD9DC /* CGConnection.m */,
-				D38A456E19D3506B007AD9DC /* CGLocalConnection.h */,
-				D38A456F19D3506B007AD9DC /* CGLocalConnection.m */,
-				D38A457219D3506B007AD9DC /* CGServerConnection.h */,
-				D38A457319D3506B007AD9DC /* CGServerConnection.m */,
-				D38A457019D3506B007AD9DC /* CGReachability.h */,
-				D38A457119D3506B007AD9DC /* CGReachability.m */,
-				D38A457519D3506B007AD9DC /* KeychainItemWrapper.h */,
-				D38A457619D3506B007AD9DC /* KeychainItemWrapper.m */,
-				D38A455519D34F8C007AD9DC /* Supporting Files */,
+				D379DD1D1A13675400A5E89C /* CGConnectionController.h */,
+				D379DD6F1A1368EF00A5E89C /* CGConnectionController.m */,
+				D379DD6D1A1368EF00A5E89C /* CGConnection.h */,
+				D379DD6E1A1368EF00A5E89C /* CGConnection.m */,
+				D379DD751A1368EF00A5E89C /* CGServerConnection.h */,
+				D379DD761A1368EF00A5E89C /* CGServerConnection.m */,
+				D379DD711A1368EF00A5E89C /* CGLocalConnection.h */,
+				D379DD721A1368EF00A5E89C /* CGLocalConnection.m */,
+				D379DD731A1368EF00A5E89C /* CGReachability.h */,
+				D379DD741A1368EF00A5E89C /* CGReachability.m */,
+				D379DD771A1368EF00A5E89C /* KeychainItemWrapper.h */,
+				D379DD781A1368EF00A5E89C /* KeychainItemWrapper.m */,
+				D379DD1B1A13675400A5E89C /* Supporting Files */,
 			);
 			path = CGConnectionController;
 			sourceTree = "<group>";
 		};
-		D38A455519D34F8C007AD9DC /* Supporting Files */ = {
+		D379DD1B1A13675400A5E89C /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				D38A455619D34F8C007AD9DC /* Info.plist */,
-				D38A458319D3518F007AD9DC /* CGConnection-Prefix.pch */,
-				D38A458419D351A7007AD9DC /* CGConnectionDefines.h */,
+				D379DD701A1368EF00A5E89C /* CGConnectionDefines.h */,
+				D379DD6C1A1368EF00A5E89C /* CGConnection-Prefix.pch */,
+				D379DD1C1A13675400A5E89C /* Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		D38A455E19D34F8D007AD9DC /* CGConnectionControllerTests */ = {
+		D379DD271A13675400A5E89C /* CGConnectionControllerTests */ = {
 			isa = PBXGroup;
 			children = (
-				D38A456119D34F8D007AD9DC /* CGConnectionControllerTests.m */,
-				D38A455F19D34F8D007AD9DC /* Supporting Files */,
+				D379DD2A1A13675400A5E89C /* CGConnectionControllerTests.m */,
+				D379DD281A13675400A5E89C /* Supporting Files */,
 			);
 			path = CGConnectionControllerTests;
 			sourceTree = "<group>";
 		};
-		D38A455F19D34F8D007AD9DC /* Supporting Files */ = {
+		D379DD281A13675400A5E89C /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				D38A456019D34F8D007AD9DC /* Info.plist */,
+				D379DD291A13675400A5E89C /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		D379DD9F1A136DBD00A5E89C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D379DD981A136B7A00A5E89C /* CGDataController.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		D38A454F19D34F8C007AD9DC /* Headers */ = {
+		D379DD151A13675400A5E89C /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D38A458519D351AD007AD9DC /* CGConnectionDefines.h in Headers */,
-				D38A457A19D3506B007AD9DC /* CGLocalConnection.h in Headers */,
-				D38A457E19D3506B007AD9DC /* CGServerConnection.h in Headers */,
-				D38A457C19D3506B007AD9DC /* CGReachability.h in Headers */,
-				D38A457719D3506B007AD9DC /* CGConnection.h in Headers */,
-				D38A455819D34F8C007AD9DC /* CGConnectionController.h in Headers */,
-				D38A458119D3506B007AD9DC /* KeychainItemWrapper.h in Headers */,
+				D379DD7E1A1368EF00A5E89C /* CGLocalConnection.h in Headers */,
+				D379DD7A1A1368EF00A5E89C /* CGConnection.h in Headers */,
+				D379DD1E1A13675400A5E89C /* CGConnectionController.h in Headers */,
+				D379DD801A1368EF00A5E89C /* CGReachability.h in Headers */,
+				D379DD791A1368EF00A5E89C /* CGConnection-Prefix.pch in Headers */,
+				D379DD7D1A1368EF00A5E89C /* CGConnectionDefines.h in Headers */,
+				D379DD821A1368EF00A5E89C /* CGServerConnection.h in Headers */,
+				D379DD841A1368EF00A5E89C /* KeychainItemWrapper.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		D38A455119D34F8C007AD9DC /* CGConnectionController */ = {
+		D379DD171A13675400A5E89C /* CGConnectionController */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = D38A456519D34F8D007AD9DC /* Build configuration list for PBXNativeTarget "CGConnectionController" */;
+			buildConfigurationList = D379DD2E1A13675400A5E89C /* Build configuration list for PBXNativeTarget "CGConnectionController" */;
 			buildPhases = (
-				D38A454D19D34F8C007AD9DC /* Sources */,
-				D38A454E19D34F8C007AD9DC /* Frameworks */,
-				D38A454F19D34F8C007AD9DC /* Headers */,
-				D38A455019D34F8C007AD9DC /* Resources */,
+				D379DD131A13675400A5E89C /* Sources */,
+				D379DD141A13675400A5E89C /* Frameworks */,
+				D379DD151A13675400A5E89C /* Headers */,
+				D379DD161A13675400A5E89C /* Resources */,
 			);
 			buildRules = (
 			);
@@ -163,70 +187,72 @@
 			);
 			name = CGConnectionController;
 			productName = CGConnectionController;
-			productReference = D38A455219D34F8C007AD9DC /* CGConnectionController.framework */;
+			productReference = D379DD181A13675400A5E89C /* CGConnectionController.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		D38A455C19D34F8D007AD9DC /* CGConnectionControllerTests */ = {
+		D379DD221A13675400A5E89C /* CGConnectionControllerTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = D38A456819D34F8D007AD9DC /* Build configuration list for PBXNativeTarget "CGConnectionControllerTests" */;
+			buildConfigurationList = D379DD311A13675400A5E89C /* Build configuration list for PBXNativeTarget "CGConnectionControllerTests" */;
 			buildPhases = (
-				D38A455919D34F8D007AD9DC /* Sources */,
-				D38A455A19D34F8D007AD9DC /* Frameworks */,
-				D38A455B19D34F8D007AD9DC /* Resources */,
+				D379DD1F1A13675400A5E89C /* Sources */,
+				D379DD201A13675400A5E89C /* Frameworks */,
+				D379DD211A13675400A5E89C /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				D379DD261A13675400A5E89C /* PBXTargetDependency */,
 			);
 			name = CGConnectionControllerTests;
 			productName = CGConnectionControllerTests;
-			productReference = D38A455D19D34F8D007AD9DC /* CGConnectionControllerTests.xctest */;
+			productReference = D379DD231A13675400A5E89C /* CGConnectionControllerTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		D38A454919D34F8C007AD9DC /* Project object */ = {
+		D379DD0F1A13675400A5E89C /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0600;
+				LastUpgradeCheck = 0610;
 				ORGANIZATIONNAME = "Revision Works, LLC";
 				TargetAttributes = {
-					D38A455119D34F8C007AD9DC = {
-						CreatedOnToolsVersion = 6.0;
+					D379DD171A13675400A5E89C = {
+						CreatedOnToolsVersion = 6.1;
+						DevelopmentTeam = 32475EWY46;
 					};
-					D38A455C19D34F8D007AD9DC = {
-						CreatedOnToolsVersion = 6.0;
+					D379DD221A13675400A5E89C = {
+						CreatedOnToolsVersion = 6.1;
 					};
 				};
 			};
-			buildConfigurationList = D38A454C19D34F8C007AD9DC /* Build configuration list for PBXProject "CGConnectionController" */;
+			buildConfigurationList = D379DD121A13675400A5E89C /* Build configuration list for PBXProject "CGConnectionController" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 			);
-			mainGroup = D38A454819D34F8C007AD9DC;
-			productRefGroup = D38A455319D34F8C007AD9DC /* Products */;
+			mainGroup = D379DD0E1A13675400A5E89C;
+			productRefGroup = D379DD191A13675400A5E89C /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				D38A455119D34F8C007AD9DC /* CGConnectionController */,
-				D38A455C19D34F8D007AD9DC /* CGConnectionControllerTests */,
+				D379DD171A13675400A5E89C /* CGConnectionController */,
+				D379DD221A13675400A5E89C /* CGConnectionControllerTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		D38A455019D34F8C007AD9DC /* Resources */ = {
+		D379DD161A13675400A5E89C /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D38A455B19D34F8D007AD9DC /* Resources */ = {
+		D379DD211A13675400A5E89C /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -236,31 +262,39 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		D38A454D19D34F8C007AD9DC /* Sources */ = {
+		D379DD131A13675400A5E89C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D38A457B19D3506B007AD9DC /* CGLocalConnection.m in Sources */,
-				D38A457F19D3506B007AD9DC /* CGServerConnection.m in Sources */,
-				D38A458219D3506B007AD9DC /* KeychainItemWrapper.m in Sources */,
-				D38A457819D3506B007AD9DC /* CGConnection.m in Sources */,
-				D38A457D19D3506B007AD9DC /* CGReachability.m in Sources */,
-				D38A457919D3506B007AD9DC /* CGConnectionController.m in Sources */,
+				D379DD7F1A1368EF00A5E89C /* CGLocalConnection.m in Sources */,
+				D379DD831A1368EF00A5E89C /* CGServerConnection.m in Sources */,
+				D379DD851A1368EF00A5E89C /* KeychainItemWrapper.m in Sources */,
+				D379DD7B1A1368EF00A5E89C /* CGConnection.m in Sources */,
+				D379DD811A1368EF00A5E89C /* CGReachability.m in Sources */,
+				D379DD7C1A1368EF00A5E89C /* CGConnectionController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D38A455919D34F8D007AD9DC /* Sources */ = {
+		D379DD1F1A13675400A5E89C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D38A456219D34F8D007AD9DC /* CGConnectionControllerTests.m in Sources */,
+				D379DD2B1A13675400A5E89C /* CGConnectionControllerTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		D379DD261A13675400A5E89C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D379DD171A13675400A5E89C /* CGConnectionController */;
+			targetProxy = D379DD251A13675400A5E89C /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
-		D38A456319D34F8D007AD9DC /* Debug */ = {
+		D379DD2C1A13675400A5E89C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -295,7 +329,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -305,7 +339,7 @@
 			};
 			name = Debug;
 		};
-		D38A456419D34F8D007AD9DC /* Release */ = {
+		D379DD2D1A13675400A5E89C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -334,7 +368,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -344,43 +378,56 @@
 			};
 			name = Release;
 		};
-		D38A456619D34F8D007AD9DC /* Debug */ = {
+		D379DD2F1A13675400A5E89C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/REPO-grqvcnwdfcjkedgovckmxjsszsvy/Build/Products/Debug-iphoneos",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "CGConnectionController/CGConnection-Prefix.pch";
+				GCC_PREFIX_HEADER = "$(PROJECT_DIR)/CGConnectionController/CGConnection-Prefix.pch";
 				INFOPLIST_FILE = CGConnectionController/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "E54BC92A-0C3B-4B36-ACBB-325DB02B497C";
 				SKIP_INSTALL = YES;
 			};
 			name = Debug;
 		};
-		D38A456719D34F8D007AD9DC /* Release */ = {
+		D379DD301A13675400A5E89C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/REPO-grqvcnwdfcjkedgovckmxjsszsvy/Build/Products/Debug-iphoneos",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "CGConnectionController/CGConnection-Prefix.pch";
+				GCC_PREFIX_HEADER = "$(PROJECT_DIR)/CGConnectionController/CGConnection-Prefix.pch";
 				INFOPLIST_FILE = CGConnectionController/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "E54BC92A-0C3B-4B36-ACBB-325DB02B497C";
 				SKIP_INSTALL = YES;
 			};
 			name = Release;
 		};
-		D38A456919D34F8D007AD9DC /* Debug */ = {
+		D379DD321A13675400A5E89C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -392,12 +439,14 @@
 				INFOPLIST_FILE = CGConnectionControllerTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "E54BC92A-0C3B-4B36-ACBB-325DB02B497C";
 			};
 			name = Debug;
 		};
-		D38A456A19D34F8D007AD9DC /* Release */ = {
+		D379DD331A13675400A5E89C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -405,38 +454,39 @@
 				INFOPLIST_FILE = CGConnectionControllerTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "E54BC92A-0C3B-4B36-ACBB-325DB02B497C";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		D38A454C19D34F8C007AD9DC /* Build configuration list for PBXProject "CGConnectionController" */ = {
+		D379DD121A13675400A5E89C /* Build configuration list for PBXProject "CGConnectionController" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				D38A456319D34F8D007AD9DC /* Debug */,
-				D38A456419D34F8D007AD9DC /* Release */,
+				D379DD2C1A13675400A5E89C /* Debug */,
+				D379DD2D1A13675400A5E89C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		D38A456519D34F8D007AD9DC /* Build configuration list for PBXNativeTarget "CGConnectionController" */ = {
+		D379DD2E1A13675400A5E89C /* Build configuration list for PBXNativeTarget "CGConnectionController" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				D38A456619D34F8D007AD9DC /* Debug */,
-				D38A456719D34F8D007AD9DC /* Release */,
+				D379DD2F1A13675400A5E89C /* Debug */,
+				D379DD301A13675400A5E89C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 		};
-		D38A456819D34F8D007AD9DC /* Build configuration list for PBXNativeTarget "CGConnectionControllerTests" */ = {
+		D379DD311A13675400A5E89C /* Build configuration list for PBXNativeTarget "CGConnectionControllerTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				D38A456919D34F8D007AD9DC /* Debug */,
-				D38A456A19D34F8D007AD9DC /* Release */,
+				D379DD321A13675400A5E89C /* Debug */,
+				D379DD331A13675400A5E89C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = D38A454919D34F8C007AD9DC /* Project object */;
+	rootObject = D379DD0F1A13675400A5E89C /* Project object */;
 }
