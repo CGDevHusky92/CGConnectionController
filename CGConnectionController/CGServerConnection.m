@@ -11,6 +11,8 @@
 
 #import <CGDataController/CGDataController.h>
 
+#import <CGSubExtender/CGSubExtender.h>
+
 #define AUTH_PRINT_DEBUG    0
 #define DATA_PRINT_DEBUG    0
 
@@ -319,8 +321,7 @@
     NSString * classURL = [self urlForRegisteredClass:type];
     NSURL * requestURL;
     if (date) {
-        NSString * dateString = [[CGDataController sharedData] dateStringForAPIUsingDate:date];
-        requestURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@/after/%@", _baseURL, classURL, dateString]];
+        requestURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@/after/%@", _baseURL, classURL, [date stringFromDate]]];
     } else {
         requestURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@/", _baseURL, classURL]];
     }
