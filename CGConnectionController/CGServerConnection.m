@@ -159,7 +159,7 @@
     
 #warning This should be changed so that we are all ready passing in a blob of object data.... should look at generalizing this for NSObject rather then NSManagedObject... maybe specialize each one as an override...
     NSManagedObject * manObj = [[CGDataController sharedData] managedObjectForClass:type withId:objectId];
-    NSDictionary * obj = [manObj dictionaryFromObject];
+    NSDictionary * obj; // = [manObj dictionaryFromObject];
     
 #ifdef DATA_PRINT_DEBUG
     NSLog(@"Dictionary To Sync - %@", obj);
@@ -299,7 +299,7 @@
 {
     if (!type) return;
     if (num > 0) {
-        NSManagedObject * manObj = [[CGDataController sharedData] nth:num managedObjectForClass:type];
+        CGManagedObject * manObj = [[CGDataController sharedData] nth:num managedObjectForClass:type];
 //        NSDate * updatedDate = [[CGDataController sharedData] dateUsingStringFromAPI:[manObj updatedAt]];
         [self requestObjectsWithType:type afterDate:[manObj updatedAt] andCompletion:completion];
     } else {
